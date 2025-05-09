@@ -1,20 +1,3 @@
-
-    //    gsap.registerPlugin(ScrollTrigger);
-
-    //    const contents = gsap.utils.toArray('#main .content');
-
-    //    gsap.to(contents,{
-    //     xPercent: -100 * (contents. length - 1),
-    //     ScrollTrigger: {
-    //         trigger : '#main',
-    //         pin: true,
-    //         scrub: 1,
-            
-    //     }
-    //    });
-
-  
-
     gsap.registerPlugin(ScrollTrigger);
 
     const container = document.querySelector('#main');

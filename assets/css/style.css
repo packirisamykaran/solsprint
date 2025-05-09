@@ -10,12 +10,11 @@
     src: url('assets/fonts/font.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
-  }
-  
+  }  
   h1 {
     font-family: 'myFont';
   }
-  .nav-btn {
+  #navbar .nav-btn {
     background-color: #b26000;
     color: #fff;
     border: 6px solid #422000;
@@ -30,7 +29,7 @@
     display: inline-block;
   }
   
-  .nav-btn:hover {
+  #navbar .nav-btn:hover {
     background-color: #a14e00;
     cursor: pointer;
     color: #fff;
@@ -50,6 +49,31 @@
     margin-top: -90px; 
   }
 
+  #main .head-container{
+    position: absolute;
+    width: 100vw;
+  }
+  .ca-container {
+    display: flex;
+    align-items: center;
+    background-color: #f3e4c5;
+    border: 6px solid #9ed02d;
+    border-radius: 30px;
+    padding: 15px 20px;
+    font-family: 'Comic Sans MS', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 5px 0 #67b100;
+    gap: 10px;
+  }
+  
+  #eye-icon {
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
   #main .content {
     height: 100vh;
     width: 100vw;
@@ -57,6 +81,7 @@
   #main .content .img-container{
     position: absolute;
     bottom: 15%;
+    
   }
   #main .content .sleep-img-container{
     position: absolute;
@@ -64,18 +89,26 @@
     left: 40%;
    
   }
+  
+  #main .img-header{
+    position: absolute;
+    top: 2%;
+    left: 50%;
+  }
+
   #main .content .blood-img-container{
     position: absolute;
     bottom: 10%;
     left: 40%;
     z-index: -1;
   }
-  
-  #main .img-header{
+  #main .content .stone-blood-img-container{
     position: absolute;
-    top: 5%;
-    left: 50%;
+    bottom: 10%;
+    left: 30%;
+    z-index: -1;
   }
+  
   #main .text-container {
     background-color: #7cb518;
     border-radius: 20px;
@@ -109,12 +142,12 @@
     cursor: pointer;
   }
   @media (min-width: 1900px){
-    .main .content .main{
+    #main .content .main{
       width: 100vw;
     }
   }
   @media (max-width: 1024px){
-    .nav-btn {
+    #navbar .nav-btn {
       padding: 0.5% 4%;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       font-weight: bold;

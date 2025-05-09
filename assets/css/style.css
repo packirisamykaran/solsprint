@@ -36,56 +36,88 @@
     color: #fff;
   }
   
-  #horizontal{
+  #main{
      background-image: url("/assets/img/background.png"); 
      background-size: cover; 
      background-position: center center; 
      background-repeat: no-repeat; 
      background-attachment: fixed; 
   }
+  #main .terrain{
+    width: 100vw;
+  }
+  #main .middle-img {
+    margin-top: -90px; 
+  }
 
-  #horizontal .content {
+  #main .content {
     height: 100vh;
     width: 100vw;
   }
+  #main .content .img-container{
+    position: absolute;
+    bottom: 15%;
+  }
+  #main .content .sleep-img-container{
+    position: absolute;
+    bottom: 15%;
+    left: 40%;
+   
+  }
+  #main .content .blood-img-container{
+    position: absolute;
+    bottom: 10%;
+    left: 40%;
+    z-index: -1;
+  }
+  
+  #main .img-header{
+    position: absolute;
+    top: 5%;
+    left: 50%;
+  }
+  #main .text-container {
+    background-color: #7cb518;
+    border-radius: 20px;
+    padding: 8px;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  #main .input-box {
+    background-color: #f5e1a4;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: 'Comic Neue', cursive;
+    font-size: 18px;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  #main .copy-btn {
+    background-color: #f5e1a4;
+    border: 2px solid #333;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
   @media (min-width: 1900px){
-    .horizontal .content .main{
+    .main .content .main{
       width: 100vw;
     }
   }
-/* @media (max-width: 1025px) {
-  .navbar {
-    padding: 0 30px;
+  @media (max-width: 1024px){
+    .nav-btn {
+      padding: 0.5% 4%;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
   }
-
-  .navbar .navbar-nav {
-    gap: 50px; 
-  }
-
-  .nav-btn {
-    padding: 14px 80px; 
-    font-size: 1.7rem;  
-    border-radius: 20px;
-  }
-  #horizontal {
-    background-image: url("/assets/img/background.png");
-    background-size: cover;
-    background-position: center;
-    height: 100vh; 
-  }
-  #horizontal .content {
-    width: 100%;
-    height: auto;  
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: center; 
-  }
-  .content img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover; 
-  }
-  #horizontal .content:last-child {
-    margin-bottom: 0;
-  }
-} */

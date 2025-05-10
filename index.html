@@ -11,7 +11,15 @@
 </head>
 <body>
 
-    <section id="popup"></section>
+      <section id="popup" class="popup-container">
+        <div class="popup-content w-75 p-5">
+          <h3 class="mb-4 text-center">IMPORTANT NOTICE</h3>
+          <p>THE <span class="text-danger">$SPRINT</span> TICKER DISPLAYED ON OUR WEBSITE AND SOCIAL CHANNELS IS A TEMPORARY PLACEHOLDER FOR INFORMATIONAL PURPOSES REGARDING SOL SPRINT'S TOKEN. IT IS NOT THE OFFICIAL TICKER.</p>
+          <p>THE OFFICIAL TOKEN NAME AND CONTRACT ADDRESS (CA) WILL BE
+          FORMALLY ANNOUNCED BY OUR TEAM. PLEASE REMAIN VIGILANT AND VERIFY ALL INFORMATION THROUGH OUR OFFICIAL CHANNELS TO AVOID SCAMS.</p>
+          <button id="closePopup" class="btn btn-success px-5 py-3">GOT IT!</button>
+        </div>
+      </section>
 
     
     <section id="navbar">
@@ -58,7 +66,7 @@
       <!--Front Page End-->
 
       <!--Game Demo Start-->
-          <div class="game-demo content d-grid flex-shrink-0 justify-content-center align-content-end">
+          <div id="gamedemo" class="game-demo content d-grid flex-shrink-0 justify-content-center align-content-end">
             
              <img src="assets/img/terrain.png" alt="terrain" class="img-fluid terrain">
           </div>
@@ -99,7 +107,7 @@
       <!--Features End-->
 
       <!--Tokenomics Start-->
-          <div class="tokenomics content d-grid flex-shrink-0 justify-content-center align-content-end">
+          <div id="ca" class="tokenomics content d-grid flex-shrink-0 justify-content-center align-content-end">
               <div class="img-container">
                   <div>
                      <div class="d-flex justify-content-center">
@@ -130,7 +138,7 @@
       <!--Utilities End-->
 
       <!--Phase-1 Start-->
-         <div class="phase-1 content d-grid flex-shrink-0 justify-content-center align-content-end">
+         <div id="roadmap" class="phase-1 content d-grid flex-shrink-0 justify-content-center align-content-end">
            <img src="assets/img/roadmap.png" class="img-fluid img-header" alt="Roadmap text">
           <div class="img-container">
             <img src="assets/img/phase-1.png" class="img-fluid" alt="phase-1">
@@ -195,10 +203,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="assets/js/index.js"></script>
-    
-    
-    
-    
+    <script src="assets/js/index.js"></script>  
 </body>
 </html>

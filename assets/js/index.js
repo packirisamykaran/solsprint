@@ -13,4 +13,12 @@
         end: () => "+=" + (container.offsetWidth * 2)
       }
     });
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("popup").classList.add("show");
+      }, 3000);
     
+      document.getElementById("closePopup").addEventListener("click", () => {
+        document.getElementById("popup").classList.remove("show");
+      });
+    });

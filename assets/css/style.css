@@ -4,7 +4,9 @@
     padding: 0%;
     box-sizing: border-box;
   }
-
+  html {
+    scroll-behavior: smooth;
+  }
   @font-face {
     font-family: 'myFont';
     src: url('assets/fonts/font.otf') format('opentype');
@@ -14,6 +16,60 @@
   h1 {
     font-family: 'myFont';
   }
+  #popup {
+    display: none;
+  }
+  #popup.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #popup .popup-content h3{
+    font-family: 'Comic Sans MS', sans-serif;
+    letter-spacing: 0.2rem;
+    font-weight: bolder;
+    font-size: 2.5rem;
+  }
+  #popup .popup-content p{
+    font-family: 'Comic Sans MS', sans-serif;
+    letter-spacing: 0.2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+  }
+  .popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: #FFF269;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+  #popup .popup-content .btn{
+    background-color: #001C87;
+    outline: none;
+    border: none;
+    font-family: 'Comic Sans MS', sans-serif;
+    letter-spacing: 0.2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    border-radius: 30px;
+  }
+  .popup-container.d-none {
+    display: none;
+  }
+  
   #navbar .nav-btn {
     background-color: #b26000;
     color: #fff;

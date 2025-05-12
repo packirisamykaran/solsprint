@@ -45,7 +45,7 @@
                  <div class="head-container">
                     <div class="row text-center">
                       <div class="col-md-3 mt-4">
-                         <a href="#"> <img src="assets/img/wallet.png" class="img-fluid" alt="wallet"></a>
+                         <a href="#" id="connect-wallet"> <img src="assets/img/wallet.png" class="img-fluid" alt="wallet"></a>
                       </div>
                       <div class="col-md-6">
                         <div class="ca-container">
@@ -206,3 +206,23 @@
     <script src="assets/js/index.js"></script>  
 </body>
 </html>
+
+
+<script>
+  document.getElementById('connect-wallet').addEventListener('click', async function (event) {
+    event.preventDefault();
+
+    if (window.solana && window.solana.isPhantom) {
+      try {
+        const response = await window.solana.connect();
+        console.log("Connected wallet address:", response.publicKey.toString());
+        alert("Connected: " + response.publicKey.toString());
+      } catch (err) {
+        console.error("Connection failed:", err.message);
+        alert("Connection rejected.");
+      }
+    } else {
+      alert("Phantom Wallet not found. Please install it: https://phantom.app");
+    }
+  });
+</script>

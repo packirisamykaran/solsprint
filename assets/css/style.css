@@ -201,6 +201,26 @@
     #main .content .main{
       width: 100vw;
     }
+    #main .content .sleep-img-container{
+      left: 30%;
+    }
+    #main .img-header{
+      position: absolute;
+      top: 30%;
+      left: 30%;
+    }
+  
+    #main .content .blood-img-container{
+      left: 25%;
+    }
+
+    #main .content .stone-blood-img-container{
+      position: absolute;
+      bottom: 10%;
+      left: 15%;
+      z-index: -1;
+    }
+
   }
   @media (max-width: 1024px){
     #navbar .nav-btn {

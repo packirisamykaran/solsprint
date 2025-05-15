@@ -9,7 +9,7 @@
   }
   @font-face {
     font-family: 'myFont';
-    src: url('assets/fonts/font.otf') format('opentype');
+    src: url('/assets/fonts/font.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
   }  
@@ -28,6 +28,7 @@
       gap: 0.6rem;
       text-decoration: none;
       transition: background-color 0.3s ease;
+          font-family: 'myFont';
     }
 
     .btn-phantom:hover {
@@ -111,11 +112,12 @@
     background-color: #b26000;
     color: #fff;
     border: 6px solid #422000;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+
     border-bottom: none;
     border-radius: 16px 16px 0px 0px;
     padding: 1% 5%;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+        font-family: 'myFont';
+
     font-weight: bold;
     font-size: 1.5rem;
     transition: all 0.3s ease;

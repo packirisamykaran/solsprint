@@ -16,6 +16,43 @@
   h1 {
     font-family: 'myFont';
   }
+  .btn-phantom {
+      background-color: #c4a9fc;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-phantom:hover {
+      background-color: #b295f4;
+      color: white;
+    }
+
+    .btn-phantom img {
+      height: 24px;
+    }
+
+    .phantom-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .phantom-connect {
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .phantom-name {
+      font-size: 16px;
+    }
   #popup {
     display: none;
   }
@@ -98,6 +135,43 @@
      background-repeat: no-repeat; 
      background-attachment: fixed; 
   }
+  #main .btn-phantom {
+    background-color: #c4a9fc;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 2rem;
+    padding: 0.5rem 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  #main .btn-phantom:hover {
+    background-color: #b295f4;
+    color: white;
+  }
+
+  #main .btn-phantom img {
+    height: 24px;
+  }
+
+  #main .phantom-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  #main .phantom-connect {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  #main .phantom-name {
+    font-size: 16px;
+  }
   #main .terrain{
     width: 100vw;
   }
@@ -149,8 +223,16 @@
     position: absolute;
     bottom: 15%;
     left: 40%;
-   
   }
+  #main .content .cloud-img-container{
+    position: absolute;
+    bottom: 4%; 
+  }
+  #main .content .phase-one-img-container{
+    position: absolute;
+    bottom: 4%; 
+  }
+
   #main .content .last-img-container{
     position: absolute;
     bottom: 11.5%;
@@ -164,8 +246,8 @@
 
   #main .content .blood-img-container{
     position: absolute;
-    bottom: 10%;
-    left: 40%;
+    bottom: 1%;
+    left: 50%;
     z-index: -1;
   }
   #main .content .stone-blood-img-container{
@@ -206,6 +288,12 @@
     justify-content: center;
     font-weight: bold;
     cursor: pointer;
+  }
+  #main .unity-wrapper{
+    position: absolute;
+    bottom: 0%;
+    left: 17%;
+    z-index: -1;
   }
   @media (min-width: 1900px){
     #main .content .main{

@@ -22,13 +22,14 @@
       font-weight: bold;
       font-size: 16px;
       border-radius: 2rem;
-      padding: 0.5rem 1.5rem;
+      /* padding: 0.5rem 1.5rem; */
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
       text-decoration: none;
       transition: background-color 0.3s ease;
-          font-family: 'myFont';
+      font-family: 'myFont';
+
     }
 
     .btn-phantom:hover {
@@ -111,11 +112,11 @@
   #navbar .nav-btn {
     background-color: #b26000;
     color: #fff;
-    border: 6px solid #422000;
+    border: 8px solid #5A3400;
 
     border-bottom: none;
     border-radius: 16px 16px 0px 0px;
-    padding: 1% 5%;
+    padding: 0.5rem 3rem;
         font-family: 'myFont';
 
     font-weight: bold;
@@ -157,7 +158,7 @@
     font-weight: bold;
     font-size: 16px;
     border-radius: 2rem;
-    padding: 0.5rem 1.5rem;
+    padding: 0.7rem 3rem;
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;

@@ -1,26 +1,26 @@
-// Register ScrollTrigger plugin from GSAP
+
 gsap.registerPlugin(ScrollTrigger);
 
-// -------------------------------
-// Horizontal Scroll Setup Section
-// -------------------------------
 (function setupHorizontalScroll() {
   const container = document.querySelector('#main');
   const sections = gsap.utils.toArray('.content');
-  const scrollSpeedFactor = 0.1; // Increase this to scroll faster (shorter scroll distance)
+  const scrollSpeedFactor = 15;
 
-  // Animates horizontal scroll based on number of sections
   gsap.to(sections, {
     xPercent: -100 * (sections.length - 1),
     ease: 'none',
     scrollTrigger: {
-      trigger: container,     // The main container to apply scroll
-      pin: true,              // Pins the container during scroll
-      scrub: 1,               // Syncs animation to scroll (lower = faster)
-      end: () => `+=${container.offsetWidth * scrollSpeedFactor}` // Length of scroll
+      trigger: container,
+      pin: true,
+      scrub: 0.8,
+      invalidateOnRefresh: true,
+      end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
     }
   });
 })();
+
+
+
 
 // ----------------------
 // Delayed Popup Handling
@@ -39,29 +39,29 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
-// -------------------------------------------
-// Custom Scroll Speed Control (Mouse Wheel)
-// -------------------------------------------
-(function setupCustomScrollSpeed() {
-  const scrollSpeed = 0.4; // Adjust this to make scrolling faster or slower
-  let isScrolling = false;
+// // -------------------------------------------
+// // Custom Scroll Speed Control (Mouse Wheel)
+// // -------------------------------------------
+// (function setupCustomScrollSpeed() {
+//   const scrollSpeed = 0.4; // Adjust this to make scrolling faster or slower
+//   let isScrolling = false;
 
-  // Overrides default wheel behavior to control scroll speed manually
-  window.addEventListener('wheel', (e) => {
-    e.preventDefault();
+//   // Overrides default wheel behavior to control scroll speed manually
+//   window.addEventListener('wheel', (e) => {
+//     e.preventDefault();
 
-    if (!isScrolling) {
-      requestAnimationFrame(() => {
-        window.scrollBy({
-          top: e.deltaY * scrollSpeed, // Multiply delta for custom speed
-          behavior: 'auto'
-        });
-        isScrolling = false;
-      });
-      isScrolling = true;
-    }
-  }, { passive: false });
-})();
+//     if (!isScrolling) {
+//       requestAnimationFrame(() => {
+//         window.scrollBy({
+//           top: e.deltaY * scrollSpeed, // Multiply delta for custom speed
+//           behavior: 'auto'
+//         });
+//         isScrolling = false;
+//       });
+//       isScrolling = true;
+//     }
+//   }, { passive: false });
+// })();
 
 // ------------------------------
 // Phantom Wallet Connect Handler

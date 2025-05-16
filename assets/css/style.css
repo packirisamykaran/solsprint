@@ -135,6 +135,20 @@
      background-repeat: no-repeat; 
      background-attachment: fixed; 
   }
+  #main .bg-container{
+    background-image: url(/assets/img/bg-1.png);
+    background-size: cover; 
+     background-position: center center; 
+     background-repeat: no-repeat; 
+     background-attachment: fixed; 
+  }
+  #main .bg-2-container{
+    background-image: url(/assets/img/bg-2.png);
+    background-size: cover; 
+     background-position: center center; 
+     background-repeat: no-repeat; 
+     background-attachment: fixed; 
+  }
   #main .btn-phantom {
     background-color: #c4a9fc;
     color: white;
@@ -178,7 +192,10 @@
   #main .middle-img {
     margin-top: -90px; 
   }
+  #main .social-icon{
+    width: 50px;
 
+  }
   #main .head-container{
     position: absolute;
     width: 100vw;
@@ -214,11 +231,22 @@
     position: absolute;
     z-index: -1;
   }
+  #main .content .master-img{
+    max-height: 95vh;  
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  
   #main .content .img-container{
     position: absolute;
     bottom: 15%;
   }
-
+  #main .content .feature-img-container{
+    position: absolute;
+    bottom: 10%;
+  }
   #main .content .sleep-img-container{
     position: absolute;
     bottom: 15%;
@@ -226,16 +254,17 @@
   }
   #main .content .cloud-img-container{
     position: absolute;
-    bottom: 4%; 
+    bottom: 10%; 
   }
   #main .content .phase-one-img-container{
     position: absolute;
-    bottom: 4%; 
+    bottom: 10%; 
   }
 
   #main .content .last-img-container{
     position: absolute;
-    bottom: 11.5%;
+    bottom: 30%;
+    z-index: -1;
   }
   
   #main .img-header{
@@ -247,7 +276,7 @@
   #main .content .blood-img-container{
     position: absolute;
     bottom: 1%;
-    left: 50%;
+    left: 45%;
     z-index: -1;
   }
   #main .content .stone-blood-img-container{

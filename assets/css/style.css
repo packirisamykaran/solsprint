@@ -138,14 +138,14 @@
      background-attachment: fixed; 
   }
   #main .bg-container{
-    background-image: url(/assets/img/bg-1.png);
+    /* background-image: url(/assets/img/bg-1.png); */
     background-size: cover; 
      background-position: center center; 
      background-repeat: no-repeat; 
      background-attachment: fixed; 
   }
   #main .bg-2-container{
-    background-image: url(/assets/img/bg-2.png);
+    /* background-image: url(/assets/img/bg-2.png); */
     background-size: cover; 
      background-position: center center; 
      background-repeat: no-repeat; 
@@ -234,7 +234,7 @@
     z-index: -1;
   }
   #main .content .master-img{
-    max-height: 95vh;  
+    max-height: 500px;  
     height: auto;
     width: auto;
     object-fit: contain;

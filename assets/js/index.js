@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 (function setupHorizontalScroll() {
   const container = document.querySelector('#main');
   const sections = gsap.utils.toArray('.content');
-  const scrollSpeedFactor = 0.4; // Increase this to scroll faster (shorter scroll distance)
+  const scrollSpeedFactor = 0.1; // Increase this to scroll faster (shorter scroll distance)
 
   // Animates horizontal scroll based on number of sections
   gsap.to(sections, {

@@ -139,7 +139,7 @@
      background-attachment: fixed; 
   }
   #main .bg-container{
-    /* background-image: url(/assets/img/bg-1.png); */
+    background-image: url(/assets/img/rays.png);
     background-size: cover; 
      background-position: center center; 
      background-repeat: no-repeat; 
@@ -318,8 +318,8 @@
   }
 
   #main .copy-btn {
-    background-color: #f5e1a4;
-    border: 2px solid #333;
+    /* background-color: #f5e1a4;
+    border: 2px solid #333; */
     border-radius: 5px;
     margin-left: 10px;
     width: 20px;

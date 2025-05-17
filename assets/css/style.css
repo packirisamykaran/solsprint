@@ -108,9 +108,8 @@
   }
   
   #navbar .nav-btn {
-    background-color: #b26000;
-    color: #fff;
-    border: 6px solid #422000;
+    background-color: #b76900;
+    border: 6px solid #5a3400;
     font-family: 'Comic Sans MS', cursive, sans-serif;
     border-bottom: none;
     border-radius: 16px 16px 0px 0px;
@@ -120,12 +119,13 @@
     font-size: 1.5rem;
     transition: all 0.3s ease;
     display: inline-block;
+    color: #f9d7b4;
   }
   
   #navbar .nav-btn:hover {
     background-color: #a14e00;
     cursor: pointer;
-    color: #fff;
+    color: #f9d7b4;
   }
   
   #main {

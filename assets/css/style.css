@@ -91,7 +91,7 @@
   .popup-content {
     background-color: #FFF269;
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 2rem;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   }
@@ -235,7 +235,7 @@
     z-index: -1;
   }
   #main .content .master-img{
-    max-height: 500px;  
+    max-height: 600px;  
     height: auto;
     width: auto;
     object-fit: contain;

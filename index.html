@@ -11,6 +11,13 @@
 </head>
 <body>
 
+
+      <section id="music">
+          <audio id="bgMusic" src="assets/music/bg.mp3" preload="auto" autoplay loop></audio>
+          <audio id="popupSound" src="assets/music/popup-tone.mp3" preload="auto"></audio>
+          <audio id="buttonSound" src="assets/music/popup-tone.mp3" preload="auto"></audio>
+      </section>
+
       <section id="popup" class="popup-container">
         <div class="popup-content w-75 p-5">
           <h3 class="mb-4 text-center">IMPORTANT NOTICE</h3>
@@ -41,7 +48,7 @@
     <section id="main" class="d-flex overflow-hidden bg-cover bg-center">
       <!--Front Page Start-->
          <div class="bg-container content d-grid flex-shrink-0 justify-content-center align-content-end">
-          <div class="main-img-container px-5" style="margin-left: 10%;">
+          <div class="main-img-container">
             <img src="assets/img/main..png" class="img-fluid master-img" alt="">
           </div>
             <img src="assets/img/terrain-1.png" alt="" class="img-fluid main terrain" >
@@ -75,8 +82,8 @@
       <!--Front Page End-->
 
       <!--Game Demo Start-->
-          <div id="gamedemo" class="bg-2-container game-demo content d-grid flex-shrink-0 justify-content-center align-content-end">
-            <div class="img-container px-5">
+          <div id="gamedemo" class="bg-2-container second-container game-demo content d-grid flex-shrink-0 justify-content-center align-content-end">
+            <div class="img-container">
               <img src="assets/img/game-demo.png" class="img-fluid master-img" alt="game-demo">
               <div class="unity-wrapper">
                 <!-- <iframe src="Build/index.html" width="1000" height="700" frameborder="0"></iframe> -->
@@ -88,7 +95,7 @@
       <!--Game Demo End-->
 
       <!--Sol Sprint Start-->
-          <div class="sol-sprint content d-grid flex-shrink-0 justify-content-center align-content-end">
+          <div class="sol-sprint  content d-grid flex-shrink-0 justify-content-center align-content-end">
             <div class="d-flex justify-content-center">
               <img src="assets/img/solsprint.png" alt="SolSprint" class="img-fluid master-img">
             </div>            
@@ -111,7 +118,7 @@
 
       <!--Features Start-->
           <div class="content d-grid flex-shrink-0 justify-content-center align-content-end">
-            <div class="img-container feature-img-container px-5">
+            <div class="img-container feature-img-container">
                <img src="assets/img/core-features.png" class="img-fluid master-img" alt="Features">
             </div>
             <!-- <div class="sleep-img-container">
@@ -123,7 +130,7 @@
 
       <!--Tokenomics Start-->
           <div id="ca" class="tokenomics content d-grid flex-shrink-0 justify-content-center align-content-end">
-              <div class="img-container px-5">
+              <div class="img-container">
                   <div>
                      <div class="d-flex justify-content-center">
                        <img src="assets/img/tokenomics.png" alt="tokenomics" class="img-fluid master-img">
@@ -145,7 +152,7 @@
 
       <!--Utilities Start-->
          <div class="utilities content d-grid flex-shrink-0 justify-content-center align-content-end">
-            <div class="img-container px-5">
+            <div class="img-container">
               <img src="assets/img/utilities.png"  alt="" class="img-fluid master-img">
             </div>
              <img src="assets/img/terrain.png" alt="terrain" class="img-fluid terrain">
@@ -155,7 +162,7 @@
       <!--Phase-1 Start-->
          <div id="roadmap" class="phase-1 content d-grid flex-shrink-0 justify-content-center align-content-end">
            <img src="assets/img/roadmap.png" class="img-fluid img-header" alt="Roadmap text">
-          <div class="phase-one-img-container px-5">
+          <div class="phase-one-img-container">
             <img src="assets/img/core-feature.png" class="img-fluid master-img" alt="phase-1">
           </div>
            <img src="assets/img/terrain.png" alt="terrain" class="img-fluid terrain">
@@ -164,7 +171,7 @@
 
       <!--Phase-2 Start-->
          <div class="phase-2 content d-grid flex-shrink-0 justify-content-center align-content-end">
-            <div class="cloud-img-container px-5">
+            <div class="cloud-img-container">
               <img src="assets/img/cloud-feature.png" class="img-fluid master-img" alt="Phase-2">
             </div>
                 <img src="assets/img/terrain.png" alt="terrain" class="img-fluid terrain">
@@ -173,7 +180,7 @@
 
       <!--Phase-3 Start-->
          <div class="phase-3 content d-grid flex-shrink-0 justify-content-center align-content-end">
-             <div class="img-container px-5">
+             <div class="img-container">
                <img src="assets/img/phase-3.png" class="img-fluid master-img" alt="phase-3">
              </div>
              <div class="stone-blood-img-container">
@@ -185,7 +192,7 @@
 
       <!--Phase-4 Start-->
          <div class="phase-4 content d-grid flex-shrink-0 justify-content-center align-content-end">
-      <div class="img-container px-5">
+      <div class="img-container ">
         <img src="assets/img/phase-4.png" class="img-fluid master-img" alt="phase-4">
       </div>
        <img src="assets/img/terrain.png" alt="terrain" class="img-fluid terrain">
@@ -193,7 +200,7 @@
       <!--Phase-4 End-->
 
       <!--Motion Start-->
-         <!-- <div class="motion content d-grid flex-shrink-0 justify-content-center align-content-end">
+         <div class="motion content d-grid flex-shrink-0 justify-content-center align-content-end">
             <div class="img-container px-5">
                <img src="assets/img/motion.png" class="img-fluid master-img" alt="Motion">
             </div>
@@ -203,12 +210,20 @@
 
       <!--Why solsprint Start-->
          <div class="content d-grid flex-shrink-0 justify-content-center align-content-end">
-             <div class="last-img-container px-5">
+             <div class="last-img-container">
                <img src="assets/img/last-frame.png" class="img-fluid master-img" alt="why-solsprint">
+               <div class="text-center para-container">
+                 <p>The crypto space has always been a wild ride, but recently, the landscape has shifted dramatically. The rise of Al, the frenzy of memecoins, and the endless cycle of pumps and dumps on Solana have left many feeling disconnected from the core spirit of what brought us here in the first place: community, fun, and a shared sense of adventure.</p>
+                 <p>As the cofounder of Sol Sprint, I wanted to create something that brings us back to those roots. This isn't a high-tech Al product or another complex DeFi protocol. It's a simple, fun, and competitive game that rekindles the joy of being part of a community.</p>
+                 <p>Sol Sprint is about more than just memecoins or trading it's about connection. It's a game where you can invite your friends, challenge other meme communities, and compete in a Lighthearted yet thrilling race. With integrated wagering, it adds a layer of excitement, but the real win is in bringing people together.</p>
+                 <p>In a space that often feels dominated by speculation and short-term gains, Sol Sprint is a reminder of why we started this journey: to build, to play, and to unite. Let's reignite the spirit of community and have some fun along the way.</p>
+                 <p>Join us, and let's sprint together!</p>
+               </div>
              </div>
                <img src="assets/img/last-terrain.png" alt="terrain" class="img-fluid terrain">
          </div>
       <!--Why solsprint Start-->
+      
 
     </section>
   

@@ -110,10 +110,9 @@
   }
   
   #navbar .nav-btn {
-    background-color: #b26000;
-    color: #fff;
-    border: 8px solid #5A3400;
-
+    background-color: #b76900;
+    border: 6px solid #5a3400;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
     border-bottom: none;
     border-radius: 16px 16px 0px 0px;
     padding: 0.5rem 3rem;
@@ -123,15 +122,16 @@
     font-size: 1.5rem;
     transition: all 0.3s ease;
     display: inline-block;
+    color: #f9d7b4;
   }
   
   #navbar .nav-btn:hover {
     background-color: #a14e00;
     cursor: pointer;
-    color: #fff;
+    color: #f9d7b4;
   }
   
-  #main{
+  #main {
      background-image: url("/assets/img/background.png"); 
      background-size: cover; 
      background-position: center center; 
@@ -151,6 +151,14 @@
      background-position: center center; 
      background-repeat: no-repeat; 
      background-attachment: fixed; 
+  }
+  #main .second-container{
+    position: relative;
+    left: -1px;
+  }
+  #main .third-container{
+    position: relative;
+    left: -2px;
   }
   #main .btn-phantom {
     background-color: #c4a9fc;
@@ -203,6 +211,7 @@
     position: absolute;
     width: 100vw;
   }
+
   .ca-container {
     display: flex;
     align-items: center;
@@ -279,8 +288,8 @@
   #main .content .blood-img-container{
     position: absolute;
     bottom: 1%;
-    left: 45%;
-    z-index: -1;
+   /* left: 45%; */
+    z-index: -1; 
   }
   #main .content .stone-blood-img-container{
     position: absolute;
@@ -326,6 +335,20 @@
     bottom: 0%;
     left: 17%;
     z-index: -1;
+  }
+
+  #main .para-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0% 10%;
+    position: absolute;
+    top: 30%;
+
+  }
+  #main .para-container p{
+    font-size: 16px;
   }
   @media (min-width: 1900px){
     #main .content .main{

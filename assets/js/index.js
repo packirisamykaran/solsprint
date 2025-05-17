@@ -1,9 +1,39 @@
-// Register ScrollTrigger plugin from GSAP
-gsap.registerPlugin(ScrollTrigger);
+window.addEventListener('click', () => {
+  const music = document.getElementById('bgMusic');
+  music.muted = false;
+  music.play();
+});
+
+const popupSound = document.getElementById('popupSound');
+  const buttonSound = document.getElementById('buttonSound');
+  const closeBtn = document.getElementById('closePopup');
+  const popup = document.getElementById('popup');
+
+  // Wait for first user interaction before playing popup sound
+  function playPopupSoundOnce() {
+    popupSound.play();
+    document.removeEventListener('click', playPopupSoundOnce);
+    document.removeEventListener('mousemove', playPopupSoundOnce);
+    document.removeEventListener('keydown', playPopupSoundOnce);
+  }
+
+  // Attach listeners for first interaction
+  document.addEventListener('click', playPopupSoundOnce);
+  document.addEventListener('mousemove', playPopupSoundOnce);
+  document.addEventListener('keydown', playPopupSoundOnce);
+
+  // Close popup and play button click sound
+  closeBtn.addEventListener('click', () => {
+    buttonSound.play();
+    popup.style.display = 'none';
+  });
+
 
 // -------------------------------
 // Horizontal Scroll Setup Section
 // -------------------------------
+
+gsap.registerPlugin(ScrollTrigger);
 (function setupHorizontalScroll() {
   const container = document.querySelector('#main');
   const sections = gsap.utils.toArray('.content');
@@ -22,6 +52,7 @@ gsap.registerPlugin(ScrollTrigger);
   });
 })();
 
+
 // ----------------------
 // Delayed Popup Handling
 // ----------------------
@@ -38,6 +69,7 @@ gsap.registerPlugin(ScrollTrigger);
     });
   });
 })();
+
 
 // -------------------------------------------
 // Custom Scroll Speed Control (Mouse Wheel)
@@ -62,6 +94,7 @@ gsap.registerPlugin(ScrollTrigger);
     }
   }, { passive: false });
 })();
+
 
 // ------------------------------
 // Phantom Wallet Connect Handler

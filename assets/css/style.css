@@ -285,8 +285,8 @@
   #main .content .blood-img-container{
     position: absolute;
     bottom: 1%;
-    left: 45%;
-    z-index: -1;
+   /* left: 45%; */
+    z-index: -1; 
   }
   #main .content .stone-blood-img-container{
     position: absolute;

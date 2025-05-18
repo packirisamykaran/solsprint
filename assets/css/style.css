@@ -369,6 +369,11 @@
   }
 
   @media (max-width: 768px) {
+    html{
+      overflow: hidden;
+    }
+
+    
     #main,
     #navbar{
       display: none;
@@ -499,6 +504,7 @@
 
   }
   @media (max-width: 1024px){
+
     #navbar .nav-btn {
       padding: 0.5% 4%;
       font-family: 'Comic Sans MS', cursive, sans-serif;

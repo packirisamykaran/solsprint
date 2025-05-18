@@ -100,41 +100,56 @@ gsap.registerPlugin(ScrollTrigger);
 // ------------------------------
 (function setupWalletConnection() {
   const connectButton = document.getElementById('connect-wallet');
-  if (!connectButton) return;
+  const walletImage = document.getElementById('wallet');
+  const walletAddress = document.getElementById('phantom-connect');
+  const phantomName = document.getElementById('phantom-name');
+
+  let isConnected = false;
+  let currentPublicKey = null;
+
+  const updateUIOnConnect = (publicKey) => {
+    currentPublicKey = publicKey;
+    walletImage.src = "assets/img/Profile icon.png";
+    walletImage.alt = "Connected Wallet";
+    walletAddress.textContent = publicKey.toString().slice(0, 4) + "..." + publicKey.toString().slice(-4);
+    walletAddress.style.fontSize = "1rem";
+    phantomName.textContent = "";
+    isConnected = true;
+  };
+
+  const updateUIOnDisconnect = () => {
+    walletImage.src = "assets/img/wallet.png";
+    walletImage.alt = "Phantom Logo";
+    walletAddress.textContent = "CONNECT";
+    walletAddress.style.fontSize = "";
+    phantomName.textContent = "phantom";
+    isConnected = false;
+    currentPublicKey = null;
+  };
 
   connectButton.addEventListener('click', async (e) => {
     e.preventDefault();
 
-    // Check if Phantom is installed
+    // Disconnect if already connected
+    if (isConnected) {
+      try {
+        await window.solana.disconnect();
+        updateUIOnDisconnect();
+        console.log("Disconnected wallet.");
+        // alert("Wallet disconnected.");
+      } catch (err) {
+        console.error("Disconnection failed:", err.message);
+      }
+      return;
+    }
+
+    // Connect if Phantom is available
     if (window.solana?.isPhantom) {
       try {
         const { publicKey } = await window.solana.connect();
         console.log("Connected wallet address:", publicKey.toString());
-        alert("Connected: " + publicKey.toString());
-
-        // id = "wallet" update src image
-        const walletImage = document.getElementById('wallet');
-        if (walletImage) {
-          walletImage.src = "assets/img/Profile icon.png";
-          walletImage.alt = "Connected Wallet";
-
-        }
-
-        // id phantom-connect update text to wallet address
-        const walletAddress = document.getElementById('phantom-connect');
-        if (walletAddress) {
-          walletAddress.textContent = 
-  publicKey.toString().slice(0, 4) + "..." + publicKey.toString().slice(-4);
-          walletAddress.style.fontSize = "20px";
-        }
-
-        const phantomname = document.getElementById('phantom-name');
-        if (walletAddress) {
-          phantomname.textContent = "";
-        }
-        
-
-
+        // alert("Connected: " + publicKey.toString());
+        updateUIOnConnect(publicKey);
       } catch (err) {
         console.error("Connection failed:", err.message);
         alert("Connection rejected.");

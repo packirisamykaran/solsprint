@@ -16,6 +16,14 @@
   h1 {
     font-family: 'myFont';
   }
+
+  #buy-btn{
+    display: absolute;
+    background-color: #c4a9fc;
+    top: 100%;
+    left: 100%;
+    transform: translateX(50%);
+  }
   .btn-phantom {
       background-color: #c4a9fc;
       color: white;
@@ -140,7 +148,7 @@
      background-attachment: fixed; 
   }
   #main .bg-container{
-    background-image: url(/assets/img/rays.png);
+    /* background-image: url(/assets/img/rays.png); */
     background-size: cover; 
      background-position: center center; 
      background-repeat: no-repeat; 

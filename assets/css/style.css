@@ -197,6 +197,7 @@
   #ca-address{
     overflow: hidden;
 
+
   }
 
 
@@ -243,6 +244,18 @@
     width: 100vw;
   }
 
+
+  #phase-3-img{
+    bottom: 10% !important;
+  }
+
+  #carrying-token{
+    bottom: 12% !important;
+  }
+
+  #ca .input-box{
+        font-family: 'myFont' !important;
+  }
   .ca-container {
     display: flex;
     align-items: center;

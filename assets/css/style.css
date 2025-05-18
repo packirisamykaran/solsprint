@@ -136,7 +136,11 @@
     transition: all 0.3s ease;
     display: inline-block;
     color: #f9d7b4;
+    text-decoration: none;
+    
   }
+
+   
   
   #navbar .nav-btn:hover {
     background-color: #a14e00;
@@ -274,6 +278,9 @@
     right: 20%;
     width: 20%;
   }
+  #main .content .main-img-container .buy-sprint-btn:hover{
+    cursor: pointer;
+  }
   #main .content .master-img{
     max-height: 600px;  
     height: auto;
@@ -306,7 +313,8 @@
 
   #main .content .last-img-container{
     position: absolute;
-    bottom: 30%;
+    bottom: 25%;
+    scale: 0.8;
     z-index: -1;
   }
   

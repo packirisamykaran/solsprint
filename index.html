@@ -299,53 +299,41 @@
 </body>
 </html>
 
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-  const scrollContainer = document.getElementById('main');
-  const buttons         = document.querySelectorAll('.nav-btn');
-  const caButton       = document.getElementById('ca-address');
+    const scrollContainer = document.getElementById('main');
+    const buttons         = document.querySelectorAll('.nav-btn');
+    const caButton        = document.getElementById('ca-address');
 
-    
+    // helper to avoid overscroll
+    const maxScrollLeft = () =>
+      scrollContainer.scrollWidth - scrollContainer.clientWidth;
 
-  // clamp helper
-  const maxScrollLeft = () =>
-    scrollContainer.scrollWidth - scrollContainer.clientWidth;
-
-  // 1) button clicks → smooth, clamped horizontal scroll
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id     = btn.dataset.target;
-      const section = document.getElementById(id);
-      if (!section) return;
-
-      const desired = section.offsetLeft;
-      const clamped = Math.min(desired, maxScrollLeft());
-
-      scrollContainer.scrollTo({
-        left:     clamped,
-        behavior: 'smooth'
+    // 1) nav buttons → section.dataset.target
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const section = document.getElementById(btn.dataset.target);
+        if (!section) return;
+        const clamped = Math.min(section.offsetLeft, maxScrollLeft());
+        scrollContainer.scrollTo({ left: clamped, behavior: 'smooth' });
       });
     });
+
+    // 2) the CA address → #ca
+    if (caButton) {
+      caButton.style.cursor = 'pointer';
+      caButton.addEventListener('click', () => {
+        const section = document.getElementById('ca');
+        if (!section) return;
+        const clamped = Math.min(section.offsetLeft, maxScrollLeft());
+        scrollContainer.scrollTo({ left: clamped, behavior: 'smooth' });
+      });
+    }
+
+    // 3) wheel = horizontal scroll
+    scrollContainer.addEventListener('wheel', e => {
+      e.preventDefault();
+      scrollContainer.scrollLeft += e.deltaY;
+    }, { passive: false });
   });
-
-  // caButton.forEach(btn => {
-  //   btn.addEventListener('click', () => {
-  //     const id     = btn.dataset.target;
-  //     const section = document.getElementById(id);
-  //     if (!section) return;
-  //     const desired = section.offsetLeft;
-  //     const clamped = Math.min(desired, maxScrollLeft());
-  //     scrollContainer.scrollTo({
-  //       left:     clamped,
-  //       behavior: 'smooth'
-  //     });
-  //   });
-
-  // 2) mouse wheel → horizontal scroll
-  scrollContainer.addEventListener('wheel', e => {
-    e.preventDefault();
-    scrollContainer.scrollLeft += e.deltaY;
-  }, { passive: false });
-});
 </script>

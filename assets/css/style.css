@@ -356,7 +356,9 @@
   #main .para-container p{
     font-size: 16px;
   }
-
+  #mobile{
+    display: none;
+  }
 
   @media (max-width: 768px) {
     #main,
@@ -364,6 +366,7 @@
       display: none;
     }
      #mobile{
+      display: block;
       background-image: url(/assets/img/bg-mobile.jpeg);
       background-size: cover; 
       background-position: center center; 

@@ -30,18 +30,22 @@
         </div>
       </section>
 
-<nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-bottom pb-0">
-  <div class="container-fluid px-5">
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <div class="d-flex justify-content-between w-100">
-        <button class="nav-btn btn-link" data-target="gamedemo">GAME DEMO</button>
-        <button class="nav-btn btn-link" data-target="ca">CA</button>
-        <button class="nav-btn btn-link" data-target="whitepaper">WHITEPAPER</button>
-        <button class="nav-btn btn-link" data-target="roadmap">ROADMAP</button>
-      </div>
-    </div>
-  </div>
-</nav>
+    
+    <section id="navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-bottom pb-0">
+          <div class="container-fluid px-5">
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <div class="d-flex justify-content-between w-100">
+                <a href="#gamedemo" class="nav-btn text-decoration-none">GAME DEMO</a>
+                <a href="#ca" class="nav-btn text-decoration-none">CA</a>
+                <a href="#whitepaper" class="nav-btn text-decoration-none">WHITEPAPER</a>
+                <a href="#roadmap" class="nav-btn text-decoration-none">ROADMAP</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+    </section>
+      
     
     <section id="main" class="bg-cover bg-center">
       <!--Front Page Start-->
@@ -299,37 +303,30 @@
 </body>
 </html>
 
-
+<!-- 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-  const scrollContainer = document.getElementById('main');
-  const buttons         = document.querySelectorAll('.nav-btn');
+    const scrollContainer = document.getElementById('main');
+    const navLinks        = document.querySelectorAll('.nav-btn');
 
-  // clamp helper
-  const maxScrollLeft = () =>
-    scrollContainer.scrollWidth - scrollContainer.clientWidth;
-
-  // 1) button clicks → smooth, clamped horizontal scroll
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id     = btn.dataset.target;
-      const section = document.getElementById(id);
-      if (!section) return;
-
-      const desired = section.offsetLeft;
-      const clamped = Math.min(desired, maxScrollLeft());
-
-      scrollContainer.scrollTo({
-        left:     clamped,
-        behavior: 'smooth'
+    // 1) Smoothly scroll container when a nav link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId      = link.getAttribute('href').slice(1);
+        const targetSection = document.getElementById(targetId);
+        if (!targetSection) return;
+        scrollContainer.scrollTo({
+          left: targetSection.offsetLeft,
+          behavior: 'smooth'
+        });
       });
     });
-  });
 
-  // 2) mouse wheel → horizontal scroll
-  scrollContainer.addEventListener('wheel', e => {
-    e.preventDefault();
-    scrollContainer.scrollLeft += e.deltaY;
-  }, { passive: false });
-});
-</script>
+    // 2) Native wheel → horizontal scroll
+    scrollContainer.addEventListener('wheel', e => {
+      e.preventDefault();               // prevent default vertical scroll
+      scrollContainer.scrollLeft += e.deltaY;
+    }, { passive: false });
+  });
+</script> -->

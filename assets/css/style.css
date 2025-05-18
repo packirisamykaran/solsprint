@@ -35,6 +35,7 @@
     .btn-phantom:hover {
       background-color: #b295f4;
       color: white;
+      cursor: pointer;
     }
 
     .btn-phantom img {

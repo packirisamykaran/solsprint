@@ -55,13 +55,13 @@
                  <div class="head-container">
                     <div class="row text-center">
                       <div class="col-md-3 mt-4">
-                        <a href="#" class="btn-phantom">
-                          <img src="assets/img/wallet.png" alt="Phantom Logo">
+                        <div id="connect-wallet" class="btn-phantom">
+                          <img src="assets/img/wallet.png" id="wallet" alt="Phantom Logo">
                           <div class="phantom-text">
-                            <span class="phantom-connect">CONNECT</span>
-                            <span class="phantom-name">phantom</span>
+                            <span id="phantom-connect" class="phantom-connect">CONNECT</span>
+                            <span id="phantom-name" class="phantom-name">phantom</span>
                           </div>
-                        </a>
+                        </div>
                       </div>
                       <div class="col-md-6">
                         <!-- !!! replace style with image bg CA Frame.png -->
@@ -231,7 +231,7 @@
 </html>
 
 
-<script>
+<!-- <script>
   document.getElementById('connect-wallet').addEventListener('click', async function (event) {
     event.preventDefault();
 
@@ -248,4 +248,4 @@
       alert("Phantom Wallet not found. Please install it: https://phantom.app");
     }
   });
-</script>
+</script> -->

@@ -6,7 +6,8 @@
   }
   html {
     scroll-behavior: smooth;
-    overflow-y: auto;
+    overflow-y: hidden;
+    
   }
   body {
     overflow-y: auto;

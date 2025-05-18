@@ -14,30 +14,41 @@ window.addEventListener('click', () => {
 });
 
 // ------------------------------------
-// Delayed Popup and Popup Sound
+// Delayed Popup, Scroll Lock, and Popup Sound
 // ------------------------------------
 (function setupPopup() {
   window.addEventListener('load', () => {
-    try {
-      setTimeout(() => {
-        try {
-          document.getElementById('popup')?.classList.add('show');
-          document.getElementById('popupSound')?.play().catch(err => console.warn("popupSound play error:", err));
-        } catch (err) {
-          console.error("Popup show/play error:", err);
-        }
-      }, 1000);
+    const popupEl  = document.getElementById('popup');
+    const closeBtn = document.getElementById('closePopup');
 
-      document.getElementById('closePopup')?.addEventListener('click', () => {
-        try {
-          document.getElementById('popup')?.classList.remove('show');
-        } catch (err) {
-          console.error("Error closing popup:", err);
+    // 1) Lock native scrolling immediately
+    document.body.style.overflow = 'hidden';
+
+    // 2) After 1s, show the popup + play its sound + disable GSAP ScrollTriggers
+    setTimeout(() => {
+      try {
+        popupEl?.classList.add('show');
+        document.getElementById('popupSound')?.play().catch(err => console.warn("popupSound play error:", err));
+        if (window.ScrollTrigger) {
+          ScrollTrigger.getAll().forEach(t => t.disable());
         }
-      });
-    } catch (err) {
-      console.error("Error setting up popup:", err);
-    }
+      } catch (err) {
+        console.error("Error showing popup:", err);
+      }
+    }, 500);
+
+    // 3) On “GOT IT!”, hide the popup, re-enable native scrolling & GSAP
+    closeBtn?.addEventListener('click', () => {
+      try {
+        popupEl?.classList.remove('show');
+        document.body.style.overflow = '';
+        if (window.ScrollTrigger) {
+          ScrollTrigger.getAll().forEach(t => t.enable());
+        }
+      } catch (err) {
+        console.error("Error closing popup:", err);
+      }
+    });
   });
 })();
 
@@ -48,22 +59,22 @@ gsap.registerPlugin(ScrollTrigger);
 (function setupHorizontalScroll() {
   try {
     const container = document.querySelector('#main');
-    const sections = gsap.utils.toArray('.content');
-    const scrollSpeedFactor = 15;
+    const sections  = gsap.utils.toArray('.content');
+    const speed     = 15;
 
-    if (container && sections.length) {
-      gsap.to(sections, {
-        xPercent: -100 * (sections.length - 1),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: container,
-          pin: true,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-          end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
-        }
-      });
-    }
+    if (!container || !sections.length) return;
+
+    gsap.to(sections, {
+      xPercent: -100 * (sections.length - 1),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: container,
+        pin:     true,
+        scrub:   0.8,
+        end:     () => `+=${container.offsetWidth * speed}`,
+        invalidateOnRefresh: true,
+      }
+    });
   } catch (err) {
     console.error("Error in horizontal scroll setup:", err);
   }
@@ -75,31 +86,32 @@ gsap.registerPlugin(ScrollTrigger);
 (function setupWalletConnection() {
   try {
     const connectButton = document.getElementById('connect-wallet');
-    const walletImage = document.getElementById('wallet');
+    const walletImage   = document.getElementById('wallet');
     const walletAddress = document.getElementById('phantom-connect');
-    const phantomName = document.getElementById('phantom-name');
+    const phantomName   = document.getElementById('phantom-name');
 
-    let isConnected = false;
+    let isConnected      = false;
     let currentPublicKey = null;
 
-    const updateUIOnConnect = (publicKey) => {
+    function updateUIOnConnect(publicKey) {
       try {
         currentPublicKey = publicKey;
-        walletImage.src = "assets/img/Profile icon.png";
-        walletImage.alt = "Connected Wallet";
-        walletAddress.textContent = publicKey.toString().slice(0, 4) + "..." + publicKey.toString().slice(-4);
+        walletImage.src  = "assets/img/Profile icon.png";
+        walletImage.alt  = "Connected Wallet";
+        walletAddress.textContent =
+          publicKey.toString().slice(0, 4) + "..." + publicKey.toString().slice(-4);
         walletAddress.style.fontSize = "1rem";
         phantomName.textContent = "";
         isConnected = true;
       } catch (err) {
         console.error("Error updating UI on connect:", err);
       }
-    };
+    }
 
-    const updateUIOnDisconnect = () => {
+    function updateUIOnDisconnect() {
       try {
-        walletImage.src = "assets/img/wallet.png";
-        walletImage.alt = "Phantom Logo";
+        walletImage.src  = "assets/img/wallet.png";
+        walletImage.alt  = "Phantom Logo";
         walletAddress.textContent = "CONNECT";
         walletAddress.style.fontSize = "";
         phantomName.textContent = "phantom";
@@ -108,11 +120,10 @@ gsap.registerPlugin(ScrollTrigger);
       } catch (err) {
         console.error("Error updating UI on disconnect:", err);
       }
-    };
+    }
 
-    connectButton?.addEventListener('click', async (e) => {
+    connectButton?.addEventListener('click', async e => {
       e.preventDefault();
-
       try {
         if (isConnected) {
           await window.solana.disconnect();
@@ -120,7 +131,6 @@ gsap.registerPlugin(ScrollTrigger);
           console.log("Disconnected wallet.");
           return;
         }
-
         if (window.solana?.isPhantom) {
           const { publicKey } = await window.solana.connect();
           console.log("Connected wallet address:", publicKey.toString());

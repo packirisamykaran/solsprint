@@ -48,11 +48,11 @@
     </section>
       
     
-    <section id="main" class="d-flex overflow-hidden bg-cover bg-center">
+    <section id="main" class="bg-cover bg-center">
       <!--Front Page Start-->
          <div class="bg-container content d-grid flex-shrink-0 justify-content-center align-content-end">
           <div class="main-img-container">
-
+            <img src="assets/img/buy-sprint-btn.png" alt="buy-sprint-btn" class="img-fluid buy-sprint-btn">
             <img src="assets/img/main.png" class="img-fluid master-img" alt="">
                         <!-- <img id="buy-btn" src="assets/img/BUY $SPRINT Button.png" alt=""> -->
           </div>
@@ -227,11 +227,80 @@
      
 
     </section>
+
+    <section id="mobile">
+      <div class="mobile">
+        <img src="assets/img/terrain.png" alt="terrain" class="img-fluid terrain">
+      </div>
+      <div class="mobile-container">
+        <img src="assets/img/m-6.png" class="img-fluid w-75 mb-3" alt="">
+        <img src="assets/img/logo-m.png" class="img-fluid w-50 mb-3" alt="">
+        <div class="mobile-ca mb-3">
+           <div class="mobile-ca-list p-2 px-3">
+            <p class="mb-0"> CA : XXXXXXXXXXXXXX <br> XXXXXXXXXXXXXXXXXX</p>
+          </div>
+           <div class="mobile-ca-list border-0">
+            <a href="#" class="d-flex justify-content-center"><img src="assets/img/view-icon.png" class="img-fluid w-50" alt=""></a>
+          </div>
+        </div>
+        <div class="mobile-ca-update">
+          <p> CA COMING SOON</p>
+        </div>
+        <div class="social-icons-m">
+          <a href=""><img src="assets/img/x.png" class="social-icon px-2 img-fluid" alt=""></a>
+          <a href=""><img src="assets/img/telegram.png" class="social-icon px-2 img-fluid" alt=""></a>
+          <a href=""><img src="assets/img/dexscreener.png" class="social-icon px-2 img-fluid" alt=""></a>
+          <a href=""><img src="assets/img/linktree.png" class="social-icon px-2 img-fluid" alt=""></a>
+        </div>
+        <div class="mobile-last">
+          <div class="mobile-last-list">
+              <img src="assets/img/pepe-mobile.png" class="img-fluid" alt="pepe">
+          </div>
+          <div class="mobile-last-list">
+              <a href="" class="btn whitepaper-m px-3">WHITEPAPER</a>
+          </div>
+          <div class="mobile-last-list">
+            <img src="assets/img/chill-guy-mobile.png" class="img-fluid" alt="chill-guy">
+          </div>
+        </div>
+      </div>
+
+    </section>
   
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="assets/js/index.js"></script>  
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-btn');
+        const scrollContainer = document.getElementById('main'); // Your scrollable container
+    
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+    
+            if (targetSection) {
+              const scrollLeft = targetSection.offsetLeft;
+              scrollContainer.scrollTo({
+                left: scrollLeft,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      });
+
+
+      scrollContainer.addEventListener('wheel', (evt) => {
+  evt.preventDefault();
+  scrollContainer.scrollLeft += evt.deltaY;
+}, { passive: false });
+
+    </script>
+    
 </body>
 </html>
 
@@ -253,4 +322,7 @@
       alert("Phantom Wallet not found. Please install it: https://phantom.app");
     }
   });
-</script> -->
+
+
+  
+</script>

@@ -20,9 +20,8 @@
   #buy-btn{
     display: absolute;
     background-color: #c4a9fc;
-    top: 100%;
-    left: 100%;
-    transform: translateX(50%);
+
+    /* transform: translateX(50%); */
   }
   .btn-phantom {
       background-color: #c4a9fc;
@@ -243,7 +242,6 @@
   #main .content .main-img-container{
     position: absolute;
     bottom: 3%;
-    position: absolute;
     z-index: -1;
   }
   #main .content .master-img{

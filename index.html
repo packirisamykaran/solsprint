@@ -67,7 +67,7 @@
                         <!-- !!! replace style with image bg CA Frame.png -->
                         <div class="ca-container">
                           <span><strong>CA:</strong></span>
-                          <span id="ca-address"><a href="#ca">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</a></span>
+                          <span id="ca-address"><button data-target="ca">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</button></span>
                           <img id="eye-icon" src="assets/img/view-icon.png" alt="eye icon">
                         </div>
                       </div>
@@ -304,6 +304,9 @@
   document.addEventListener('DOMContentLoaded', () => {
   const scrollContainer = document.getElementById('main');
   const buttons         = document.querySelectorAll('.nav-btn');
+  const caButton       = document.getElementById('ca-address');
+
+    
 
   // clamp helper
   const maxScrollLeft = () =>
@@ -325,6 +328,19 @@
       });
     });
   });
+
+  // caButton.forEach(btn => {
+  //   btn.addEventListener('click', () => {
+  //     const id     = btn.dataset.target;
+  //     const section = document.getElementById(id);
+  //     if (!section) return;
+  //     const desired = section.offsetLeft;
+  //     const clamped = Math.min(desired, maxScrollLeft());
+  //     scrollContainer.scrollTo({
+  //       left:     clamped,
+  //       behavior: 'smooth'
+  //     });
+  //   });
 
   // 2) mouse wheel → horizontal scroll
   scrollContainer.addEventListener('wheel', e => {

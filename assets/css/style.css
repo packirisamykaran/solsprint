@@ -206,9 +206,11 @@
   }
 
 
-  #ca-address a{
+  #ca-address button{
     text-decoration: none;
+    border: none;
     color: #000;
+    background-color: transparent;
   }
 
   #main .btn-phantom img {
@@ -244,6 +246,11 @@
     width: 100vw;
   }
 
+
+  #navbarNav{
+    max-width: 1200px;
+    margin-inline: auto;
+  }
 
   #phase-3-img{
     bottom: 10% !important;

@@ -5,28 +5,22 @@ window.addEventListener('click', () => {
 });
 
 const popupSound = document.getElementById('popupSound');
-  const buttonSound = document.getElementById('buttonSound');
-  const closeBtn = document.getElementById('closePopup');
-  const popup = document.getElementById('popup');
+const popup = document.getElementById('popup');
 
-  // Wait for first user interaction before playing popup sound
-  function playPopupSoundOnce() {
-    popupSound.play();
-    document.removeEventListener('click', playPopupSoundOnce);
-    document.removeEventListener('mousemove', playPopupSoundOnce);
-    document.removeEventListener('keydown', playPopupSoundOnce);
-  }
+// // Wait for first user interaction before playing popup sound
+// function playPopupSoundOnce() {
 
-  // Attach listeners for first interaction
-  document.addEventListener('click', playPopupSoundOnce);
-  document.addEventListener('mousemove', playPopupSoundOnce);
-  document.addEventListener('keydown', playPopupSoundOnce);
+//   document.removeEventListener('click', playPopupSoundOnce);
+//   document.removeEventListener('mousemove', playPopupSoundOnce);
+//   document.removeEventListener('keydown', playPopupSoundOnce);
+// }
 
-  // Close popup and play button click sound
-  closeBtn.addEventListener('click', () => {
-    buttonSound.play();
-    popup.style.display = 'none';
-  });
+// // Attach listeners for first interaction
+// document.addEventListener('click', playPopupSoundOnce);
+// document.addEventListener('mousemove', playPopupSoundOnce);
+// document.addEventListener('keydown', playPopupSoundOnce);
+
+
 
 
 // -------------------------------
@@ -61,7 +55,11 @@ gsap.registerPlugin(ScrollTrigger);
     // Show popup 3 seconds after page load
     setTimeout(() => {
       document.getElementById('popup')?.classList.add('show');
-    }, 3000);
+    }, 1000);
+
+    
+
+    popupSound.play();
 
     // Hide popup when close button is clicked
     document.getElementById('closePopup')?.addEventListener('click', () => {

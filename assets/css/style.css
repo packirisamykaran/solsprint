@@ -14,7 +14,7 @@
   
   @font-face {
     font-family: 'myFont';
-    src: url('../fonts/font.otf') format('opentype');
+    src: url('assets/fonts/font.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
   }  
@@ -145,7 +145,7 @@
   }
   
   #main {
-     background-image: url("../img/background.png"); 
+     background-image: url("assets/img/background.png"); 
      background-size: cover; 
      background-position: center center; 
      background-repeat: no-repeat; 

@@ -188,6 +188,23 @@
     color: white;
   }
 
+
+  #ca-address{
+    overflow: hidden;
+
+  }
+
+
+  #ca-address:hover{
+    cursor: pointer;
+  }
+
+
+  #ca-address a{
+    text-decoration: none;
+    color: #000;
+  }
+
   #main .btn-phantom img {
     height: 24px;
   }
@@ -349,6 +366,12 @@
     bottom: 0%;
     left: 17%;
     z-index: -1;
+  }
+
+
+
+  #why-solsprint{
+    max-height: 500px;
   }
 
   #main .para-container{

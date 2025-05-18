@@ -304,24 +304,29 @@
 </html>
 
 
-<!-- <script>
-  document.getElementById('connect-wallet').addEventListener('click', async function (event) {
-    event.preventDefault();
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const scrollContainer = document.getElementById('main');
+    const navLinks        = document.querySelectorAll('.nav-btn');
 
-    if (window.solana && window.solana.isPhantom) {
-      try {
-        const response = await window.solana.connect();
-        console.log("Connected wallet address:", response.publicKey.toString());
-        alert("Connected: " + response.publicKey.toString());
-      } catch (err) {
-        console.error("Connection failed:", err.message);
-        alert("Connection rejected.");
-      }
-    } else {
-      alert("Phantom Wallet not found. Please install it: https://phantom.app");
-    }
+    // 1) Smoothly scroll container when a nav link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId      = link.getAttribute('href').slice(1);
+        const targetSection = document.getElementById(targetId);
+        if (!targetSection) return;
+        scrollContainer.scrollTo({
+          left: targetSection.offsetLeft,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // 2) Native wheel → horizontal scroll
+    scrollContainer.addEventListener('wheel', e => {
+      e.preventDefault();               // prevent default vertical scroll
+      scrollContainer.scrollLeft += e.deltaY;
+    }, { passive: false });
   });
-
-
-  
 </script>

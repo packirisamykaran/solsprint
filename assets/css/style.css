@@ -23,6 +23,13 @@
     font-family: 'myFont';
   }
 
+
+  #ground{
+    position: sticky;
+    width: 100vw;
+    top: 85%;
+    z-index:5;
+  }
   #buy-btn{
     display: absolute;
     background-color: #c4a9fc;
@@ -150,11 +157,11 @@
   }
   
   #main {
-     background-image: url("../img/background.png"); 
+     background-image: url("../img/background1.png"); 
      background-size: cover; 
-     background-position: center center; 
-     background-repeat: no-repeat; 
-     background-attachment: fixed; 
+     background-position: top ; 
+     /* background-repeat: no-repeat;  */
+     /* background-attachment: fixed;  */
      display: flex;
      overflow: hidden;
   }

@@ -240,6 +240,7 @@
   }
   #main .terrain{
     width: 100vw;
+    z-index: -1;
     scale: 1.002;
   }
   #main .middle-img {

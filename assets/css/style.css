@@ -23,6 +23,78 @@
     font-family: 'myFont';
   }
 
+  
+
+  #section-1{
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    width: 100vw;
+
+
+
+  }
+
+  #section-1 .buy-btn{
+    max-width: 100px;
+  }
+
+
+
+  #section-1 .bottom-stack{
+    background: pink;
+    width: 100vw;
+
+  }
+
+
+   .bottom-stack .container{
+
+    padding: 0;
+
+   }
+
+   .bottom-stack .container .hero{
+    background: purple;
+    margin: 0;
+    /* width: 100%;  */
+    height: 50vh;
+
+   }
+
+  .bottom-stack .container .buy-btn{
+    position: absolute;
+    top: 65%;
+    left: 66%;
+
+  }
+
+
+
+
+  #section-1 .head-container{
+
+    justify-items: flex-start;
+  }
+
+  #section-1 .container{
+
+    width: fit-content;
+    position: relative;
+
+  }
+
+
+
+  .terrain-1{
+    max-width: 100vw;
+    background: yellow;
+
+  }
+
 
   #ground{
     position: sticky;
@@ -251,8 +323,10 @@
 
   }
   #main .head-container{
-    position: absolute;
-    width: 100vw;
+
+    /* position: absolute; */
+    /* width: 100vw; */
+
   }
 
 

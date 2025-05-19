@@ -472,14 +472,15 @@
     #popup .popup-content h3{
       letter-spacing: 1px;
       font-weight: bolder;
-      font-size: 12px;
+      font-size: 1.2rem;
       color: #f5e1a4;
       font-family: 'myFont';
     }
     #popup .popup-content p{
       letter-spacing: 1px;
       font-weight: bolder;
-      font-size: 10px;
+
+            font-size: 1rem;
       font-family: 'myFont';
     }
     #popup .popup-content .btn{
@@ -489,16 +490,18 @@
       font-family: 'Comic Sans MS', sans-serif;
       letter-spacing: 1px;
       font-weight: bolder;
-      font-size: 10px;
+      font-size: 1.25rem;
+      color: #051C7D;
       font-family: 'myFont';
-      border-radius: 30px;
-      padding: 2% 2%;
+      border-radius: 5rem;
+      padding: 0.8rem 3rem !important;
     }
     #mobile .mobile{
       position: absolute;
       bottom: 0px;
     }
     #mobile .mobile-container{
+      padding-top: 20%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -508,10 +511,11 @@
       background-color:#FCE06E ;
       font-size: 10px;
       font-weight: bolder;
-      width: 65%;
+      /* width: 65%; */
       display: flex;
       justify-content: space-between;
       align-items: center;
+      scale: 1.5;
       border-radius: 20px;
     }
     #mobile .mobile-ca{
@@ -522,6 +526,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+    }
+    #mobile .hidden-ca{
+      width: 80% ;
+
+
     }
     #mobile .mobile-ca-update p{
       font-family: 'myFont';
@@ -533,7 +543,7 @@
       width: 100%;
     }
     #mobile .social-icon{
-      width: 60px;
+      width: 80px;
     }
     #mobile .mobile-last{
       display: flex;

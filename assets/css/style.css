@@ -157,7 +157,7 @@
   }
   
   #main {
-     background-image: url("../img/background1.png"); 
+     background-image: url("../img/background.png"); 
      background-size: cover; 
      background-position: top ; 
      /* background-repeat: no-repeat;  */
@@ -240,6 +240,7 @@
   }
   #main .terrain{
     width: 100vw;
+    scale: 1.002;
   }
   #main .middle-img {
     margin-top: -90px; 

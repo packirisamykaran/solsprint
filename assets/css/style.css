@@ -451,8 +451,15 @@
   @media (max-width: 768px) {
     html{
       overflow: hidden;
+      /* height: 100vh !important; */
+
     }
 
+
+    .terrain-m{
+      width: 100vw;
+
+    }
     
     #main,
     #navbar{
@@ -514,6 +521,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      max-width: 500px;
+      margin-inline: auto;
     }
     #mobile .mobile-ca{
       background-color:#FCE06E ;
@@ -557,7 +566,7 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      width: 100%;
+      width: fit-content;
       position: absolute;
       bottom: 15%;
       scale: 1.5;

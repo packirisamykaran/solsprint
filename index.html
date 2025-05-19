@@ -142,9 +142,10 @@
                            <div class="text-container">
 
                               <!-- !!!! Alignment needed -->
-                              <div class="input-box">
-                                CA: CY8WKNH3MZYRQYXQXFVV6PRAVINICVLKQ8N9CUAWDLGB <img src="assets/img/copy-icon.png" alt="" class="img-fluid">
-                              </div>
+                            <div class="input-box" id="copy-ca" style="cursor: pointer;">
+  CA: <span id="ca-text">CY8WKNH3MZYRQYXQXFVV6PRAVINICVLKQ8N9CUAWDLGB</span>
+  <img src="assets/img/copy-icon.png" alt="Copy" class="img-fluid">
+</div>
                               <!-- <div class="copy-btn"><img src="assets/img/copy-icon.png" alt="" class="img-fluid"></div> -->
                             </div>
                           </div>
@@ -345,4 +346,24 @@
       scrollContainer.scrollLeft += e.deltaY;
     }, { passive: false });
   });
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const copyBox = document.getElementById('copy-ca');
+  const caText  = document.getElementById('ca-text');
+
+  if (copyBox && caText) {
+    copyBox.addEventListener('click', () => {
+      const textToCopy = caText.textContent.trim();
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        copyBox.classList.add('copied'); // Optional styling
+        // alert("Contract address copied!");
+      }).catch(err => {
+        console.error('Copy failed:', err);
+        alert("Failed to copy. Try manually.");
+      });
+    });
+  }
+});
 </script>

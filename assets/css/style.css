@@ -285,6 +285,12 @@
   #ca .input-box{
         font-family: 'myFont' !important;
   }
+
+  .phase-4 .img-container {
+
+    bottom: 12% !important;
+
+  }
   .ca-container {
     display: flex;
     align-items: center;
@@ -554,6 +560,7 @@
       width: 100%;
       position: absolute;
       bottom: 15%;
+      scale: 1.5;
     }
     #mobile .mobile-last .whitepaper-m{
       background-color: #E8593A;

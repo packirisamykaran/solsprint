@@ -130,7 +130,7 @@
     display: none;
   }
   
-  #navbar .nav-btn {
+    .nav-link, #navbar .nav-btn {
     background-color: #b76900;
     border: 6px solid #5a3400;
     font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -143,13 +143,13 @@
     font-size: 1.5rem;
     transition: all 0.3s ease;
     display: inline-block;
-    color: #f9d7b4;
+    color: #f9d7b4 !important;
     text-decoration: none;
     
   }
 
-   
-  
+
+
   #navbar .nav-btn:hover {
     background-color: #a14e00;
     cursor: pointer;

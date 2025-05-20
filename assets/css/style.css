@@ -607,6 +607,11 @@
 
 }
 
+
+#section-8 .roadmap-pointer a{
+  color: black;
+}
+
 #section-8 .bottom-stack .container .phase-2-img{
   max-width: 1000px;
   }

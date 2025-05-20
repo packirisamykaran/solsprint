@@ -39,6 +39,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    min-width: 600px;
   }
 
    .ca-container .ca-content{
@@ -53,6 +54,12 @@
 
   }
 
+
+  #ca-address  button{
+    overflow: hidden;
+    width: 100%;
+
+  }
   
   
 

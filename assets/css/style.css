@@ -23,6 +23,37 @@
     font-family: 'myFont';
   }
 
+
+   .ca-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+  }
+
+  .ca-frame{
+    position: absolute;
+    width: 100%;
+
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+   .ca-container .ca-content{
+    font-family: 'myFont';
+    z-index: 2;
+
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+  }
+
+  
   
 
   #section-1{
@@ -1129,20 +1160,7 @@
     bottom: 12% !important;
 
   }
-  .ca-container {
-    display: flex;
-    align-items: center;
-    background-color: #f3e4c5;
-    border: 6px solid #9ed02d;
-    border-radius: 30px;
-    padding: 15px 20px;
-    font-family: 'Comic Sans MS', sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-    box-shadow: 0 5px 0 #67b100;
-    gap: 10px;
-  }
-  
+ 
   #eye-icon {
     margin-left: auto;
     width: 20px;

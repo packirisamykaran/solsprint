@@ -66,11 +66,14 @@
         </div>
         <div class="col-md-6">
           <div class="ca-container">
-            <span><strong>CA:</strong></span>
-            <span id="ca-address">
-              <button data-target="ca">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</button>
+            <img src="assets/img/CA Frame.png" alt="" class="ca-frame">
+            <span class="ca-content">
+              <span><strong>CA:</strong></span>
+              <span id="ca-address">
+                <button data-target="section-5">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</button>
+              </span>
+              <img id="eye-icon" src="assets/img/view-icon.png" alt="eye icon">
             </span>
-            <img id="eye-icon" src="assets/img/view-icon.png" alt="eye icon">
           </div>
         </div>
         <div class="">
@@ -432,7 +435,7 @@
     if (caButton) {
       caButton.style.cursor = 'pointer';
       caButton.addEventListener('click', () => {
-        const section = document.getElementById('ca');
+        const section = document.getElementById('section-5');
         if (!section) return;
         const clamped = Math.min(section.offsetLeft, maxScrollLeft());
         scrollContainer.scrollTo({ left: clamped, behavior: 'smooth' });

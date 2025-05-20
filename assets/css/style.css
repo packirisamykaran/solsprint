@@ -118,7 +118,7 @@
 
    .bottom-stack .container .hero{
 
-    margin: 0;
+    margin-left: -5%;
 
     width: 100%;
 
@@ -136,8 +136,8 @@
 
   .bottom-stack .container .buy-btn{
     position: absolute;
-    top: 65%;
-    left: 60%;
+    top: 70%;
+    left: 55%;
 
   }
 
@@ -324,6 +324,7 @@
   left: 50%;
   top:40%;
   transform: translate(-50%, -100%); 
+  max-width: 1400px;
  
 }
 
@@ -605,7 +606,7 @@
   align-items: center;
   /* gap: 30vh; */
 
-  left: -50%;
+  left: -45%;
   bottom: 0;
   transform: translate(0%, 0%);
   padding-bottom: 20%;
@@ -630,7 +631,7 @@
 }
 
 #section-8 .bottom-stack .container .phase-2-img{
-  max-width: 1000px;
+  max-width: 900px;
   }
 
 #section-8 .container{
@@ -785,18 +786,13 @@
 
 #section-11 .container{
 
-
-
-
   position: absolute;
   z-index: 1;
   left: 50%;
   top:60%;
   transform: translate(-50%, -100%); 
   max-width: 900px;
-  
-
- 
+   
 }
 
 .why-solsprint-text {

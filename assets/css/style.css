@@ -1330,23 +1330,28 @@
     display: none;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     html{
+      background-image: url("../img/bg-mobile.jpeg");
+       background-size: cover; 
+      background-position: center center; 
+      background-repeat: no-repeat; 
+      background-attachment: fixed;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
       /* height: 100vh !important; */
 
     }
 
-
-    .terrain-m{
-      width: 100vw;
-
-    }
-    
-    #main,
+     #main,
     #navbar{
       display: none;
     }
+
+
+
+
      #mobile{
       display: block;
       background-image: url("../img/bg-mobile.jpeg");
@@ -1356,7 +1361,22 @@
       background-attachment: fixed;
       width: 100vw;
       height: 100vh;
+      overflow: hidden;
+
+      
+      
+     
      }
+
+
+    .terrain-m{
+      width: 100vw;
+      position: absolute;
+      bottom: 0;
+
+    }
+    
+   
      
     .popup-content {
       background-color: #53270D;
@@ -1394,17 +1414,25 @@
       padding: 0.8rem 3rem !important;
     }
     #mobile .mobile{
-      position: absolute;
-      bottom: 0px;
+
+      background: green;
+      /* position: absolute;
+      bottom: 0px; */
     }
+
+
+
+
     #mobile .mobile-container{
-      padding-top: 20%;
+
+
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      max-width: 500px;
-      margin-inline: auto;
+      padding-top: 5%;
+
+
     }
     #mobile .mobile-ca{
       background-color:#FCE06E ;
@@ -1431,7 +1459,12 @@
       width: 80% ;
 
 
+
     }
+
+     #mobile .mobile-container img{
+      max-width: 300px;
+     }
     #mobile .mobile-ca-update p{
       font-family: 'myFont';
       color: #f1f1f1;

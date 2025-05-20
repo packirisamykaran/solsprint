@@ -386,6 +386,20 @@
 }
 
 
+#section-5 .container .token-text{
+  color: #051C7D;
+  font-family: "myFont";
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top:85%;
+  transform: translate(-50%, -100%);
+}
+#section-5 .container .token-text a{
+
+    color: #051C7D;
+}
+
 #section-5 .container .ca-wrapper{
 
   display: flex;

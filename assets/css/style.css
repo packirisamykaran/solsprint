@@ -414,6 +414,48 @@
 
 
 
+#section-6{
+
+  width: 100vw;
+  height: 100vh;
+  display: flex ;
+  flex-direction: column;
+  justify-content: flex-end;
+
+
+}
+
+#section-6 .bottom-stack{
+
+  position: relative;
+
+
+}
+
+
+#section-6 .container{
+
+
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top:40%;
+  transform: translate(-50%, -100%); 
+ 
+}
+
+
+#section-6 img{
+  width: 100%;  
+
+}
+
+.terrain{
+        max-width: 1500px;  
+}
+
+
+
 
 
 

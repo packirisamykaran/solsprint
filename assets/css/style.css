@@ -574,7 +574,7 @@
   z-index: 1;
   left: 50%;
   top:40%;
-  transform: translate(-50%, -100%); 
+  transform: translate(-50%, -95%); 
  
 }
 
@@ -591,6 +591,50 @@
 }
 /* ---------------------------------------------- */
 
+
+
+
+#section-9{
+
+  width: 100vw;
+  height: 100vh;
+  display: flex ;
+  flex-direction: column;
+  justify-content: flex-end;
+
+
+}
+
+#section-9 .bottom-stack{
+
+  position: relative;
+
+
+}
+
+
+#section-9 .container{
+
+
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top:40%;
+  transform: translate(-50%, -95%); 
+  max-width: 900px;
+ 
+}
+
+
+#section-9 img{
+  width: 100%;  
+
+}
+
+.terrain{
+        max-width: 1500px;  
+}
+
 /* ---------------------------------------------- */
 
 
@@ -600,11 +644,137 @@
 
 
 
+#section-10{
+
+  width: 100vw;
+  height: 100vh;
+  display: flex ;
+  flex-direction: column;
+  justify-content: flex-end;
+
+
+}
+
+#section-10 .bottom-stack{
+
+  position: relative;
+
+
+}
+
+
+#section-10 .container{
+
+
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top:40%;
+  transform: translate(-50%, -100%); 
+  max-width: 900px;
+ 
+}
+
+
+#section-10 img{
+  width: 100%;  
+
+}
+
+.terrain{
+        max-width: 1500px;  
+}
+
+
 
 /* ---------------------------------------------- */
 
 
 
+
+
+
+
+#section-11{
+
+  width: 100vw;
+  height: 100vh;
+  display: flex ;
+  flex-direction: column;
+  justify-content: flex-end;
+
+
+
+
+}
+
+#section-11 .bottom-stack{
+
+  position: relative;
+
+
+
+}
+
+
+#section-11 .container{
+
+
+
+
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top:60%;
+  transform: translate(-50%, -100%); 
+  max-width: 900px;
+
+ 
+}
+
+.why-solsprint-text {
+  /* size & center the frame */
+  width: 100%;
+  max-width: 1200px;                /* adjust to your frame’s pixel width */
+  margin: 0 auto;
+  
+  /* use the frame as a non-repeating, contained background */
+  background: url('../img/last-frame.png') no-repeat center top;
+  background-size: contain;
+  
+  /* preserve the image’s aspect ratio (w/h) so height scales automatically */
+  aspect-ratio: 1200 / 600;         /* replace with your frame’s actual width/height ratio */
+  
+  /* inset the text inside the “window” of your frame */
+  padding: 6.5rem;          /* top | right/left | bottom — tweak until text sits perfectly */
+  box-sizing: border-box;
+  
+  /* optional text styling */
+  color: #1a1a1a;
+  line-height: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  z-index: -1;
+}
+
+.why-solsprint-text p {
+  margin-bottom: 0.6rem;
+
+}
+
+
+#section-11 img{
+  width: 100%;  
+
+}
+
+.terrain{
+        max-width: 1500px;  
+        z-index:2;
+}
+
+
+/* ---------------------------- */
 
 
 
@@ -644,6 +814,27 @@
 
 
 #section-7{
+
+  display: none;
+
+}
+
+
+
+#section-8{
+
+  display: none;
+
+}
+
+
+#section-9{
+
+  display: none;
+
+}
+
+#section-10{
 
   /* display: none; */
 

@@ -912,6 +912,7 @@
     }
   #popup {
     display: none;
+  
   }
   #popup.show {
     display: flex;
@@ -949,6 +950,7 @@
     border-radius: 2rem;
     text-align: center;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      max-width: 1000px;
   }
   #popup .popup-content .btn{
     background-color: #001C87;

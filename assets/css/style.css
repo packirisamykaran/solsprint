@@ -334,19 +334,67 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap:1rem;
  
+}
+#section-5 .container .tokenomics-header{
+  max-width: 400px;
 }
 
 
-#section-5 .container .ca-container{
+#section-5 .container .ca-wrapper{
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  gap: 1rem;
+  max-width: 500px;
+  align-items: center;
+
+  cursor: pointer;
+
+
+
 }
 
-#section-5 .container .ca-container .copy{
+
+#section-5 .container .ca-wrapper .ca-text-wrapper{
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  gap: 1rem;
+  font-family: "myFont";
+  font-size: 0.8rem;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+
+
+
+;
+
+
+}
+
+#section-5 .container .ca-wrapper .ca-text-wrapper .ca-text{
+  text-wrap: none;
+
+  white-space: nowrap;
+  padding-top: 0.1rem;
+
+
+}
+
+
+#section-5 .container .ca-wrapper .copy{
   max-width: 20px;
+
 }
 
 #section-5 img{
@@ -372,6 +420,8 @@
 
 
 
+
+
 /* ---------------------------------------------- */
 
 
@@ -380,8 +430,37 @@
 
 
 
+#section-1{
+  display: none;
+}
+
+#section-2{
+  display: none;
+}
+#section-3{
+
+  display: none;
+
+}
 
 
+#section-4{
+
+  display: none;
+
+}
+
+
+#section-5{
+
+  display: none;
+
+}
+
+
+#popup{
+  display: none !important;
+}
 
 
 

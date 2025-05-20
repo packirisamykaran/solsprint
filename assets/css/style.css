@@ -70,7 +70,8 @@
 
     top: 10%;
     z-index: -1;
-        max-width: 1000px;
+    max-width: 1200px;
+
 
 
    }
@@ -131,6 +132,125 @@
   }
 
 
+
+
+
+/* ---------------------------------------------- */
+
+
+#section-2{
+
+  width: 100vw;
+  height: 100vh;
+  display: flex ;
+  flex-direction: column;
+  justify-content: flex-end;
+
+
+}
+
+#section-2 .bottom-stack{
+
+  position: relative;
+
+
+}
+
+
+#section-2 .container{
+
+
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top:40%;
+  transform: translate(-50%, -100%); 
+ 
+}
+
+
+#section-2 img{
+  width: 100%;  
+
+}
+
+.terrain{
+        max-width: 1500px;  
+}
+
+
+
+
+
+/* ---------------------------------------------- */
+
+
+
+
+
+#section-3{
+
+  width: 100vw;
+  height: 100vh;
+  display: flex ;
+  flex-direction: column;
+  justify-content: flex-end;
+
+
+}
+
+#section-3 .bottom-stack{
+
+  position: relative;
+
+
+}
+
+
+#section-3 .container{
+  display: flex;
+  flex-direction: column;
+
+
+  align-items: center;
+  gap:2rem;
+
+
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top:-50%;
+  transform: translate(-50%, -100%); 
+ 
+}
+
+#section-3 .container .header{
+  max-width: 500px;
+}
+
+#section-3 .container .hero{
+  max-width: 1000px;
+}
+
+
+
+
+
+#section-3 img{
+  width: 100%;  
+
+}
+
+.terrain{
+        max-width: 1500px;  
+}
+
+
+
+
+
+
+/* ---------------------------------------------- */
   #ground{
     position: sticky;
     width: 100vw;

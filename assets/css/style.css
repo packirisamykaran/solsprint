@@ -80,7 +80,7 @@
   }
 
   #section-1 .buy-btn{
-    max-width: 100px;
+    max-width: 200px;
     
   }
 
@@ -137,7 +137,7 @@
   .bottom-stack .container .buy-btn{
     position: absolute;
     top: 65%;
-    left: 66%;
+    left: 60%;
 
   }
 

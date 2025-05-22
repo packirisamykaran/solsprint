@@ -102,9 +102,11 @@
     <div id="section-2">
       <div class="bottom-stack">
         <div class="container">
-          <img src="assets/img/game-demo.png" alt="game-demo" class="game-frame">
-          <div class="unity-wrapper">
-            <!-- <iframe src="Build/index.html" width="1000" height="700" frameborder="0"></iframe> -->
+          <!-- <img src="assets/img/game-demo.png" alt="game-demo" class="game-frame"> -->
+          <div id="game-wrapper">
+            <div id="overlay">Click to interact</div>
+            <iframe id="unity-frame" src="game/index.html" width="100%" height="600" frameborder="0"
+              allowfullscreen></iframe>
           </div>
 
         </div>
@@ -474,6 +476,28 @@
           alert("Failed to copy. Try manually.");
         });
       });
+    }
+  });
+
+
+
+
+
+</script>
+<script>
+  const iframe = document.getElementById('unity-frame');
+  const overlay = document.getElementById('overlay');
+
+  overlay.addEventListener('click', () => {
+    iframe.classList.add('active');
+    overlay.style.display = 'none';
+  });
+
+  // Optional: Reset interaction when user clicks outside the iframe
+  window.addEventListener('click', (e) => {
+    if (!iframe.contains(e.target) && !overlay.contains(e.target)) {
+      iframe.classList.remove('active');
+      overlay.style.display = 'block';
     }
   });
 </script>

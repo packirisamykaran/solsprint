@@ -73,8 +73,11 @@
 
     width: 100vw;
     height: 100vh;
-
-
+    background-image: url(/assets/img/bg-rays.png);
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat; 
+   
 
 
   }
@@ -239,8 +242,9 @@
   pointer-events: auto; /* enable interaction when clicked */
 }
 
-#overlay {
+#section-2 #overlay {
   position: absolute;
+
   top: 0;
   left: 0;
   z-index: 2;
@@ -254,8 +258,12 @@
   font-weight: bold;
   backdrop-filter: blur(2px);
   cursor: pointer;
-}
 
+ 
+}
+#section-2 .correct{
+  width: 25px;
+}
 /* ---------------------------------------------- */
 
 
@@ -446,6 +454,28 @@
 
 
 }
+
+#section-5 .copied-popup {
+  position: absolute;
+  background-color: #4BB543;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  top: -30px;
+  right: 0;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+#section-5 .ca-text-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
 
 
 #section-5 .container .ca-wrapper .ca-text-wrapper{
@@ -996,6 +1026,50 @@
     .phantom-name {
       font-size: 16px;
     }
+
+    .wallet-container {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .wallet-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%; /* place dropdown below the button */
+      left: 0;
+      background: #d9bfff;
+      border-radius: 10px;
+      padding: 10px;
+      width: 180px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    
+    .wallet-dropdown ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .wallet-dropdown li {
+      margin: 8px 0;
+    }
+    
+    .wallet-dropdown a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    
+    /* Show correct dropdown on hover */
+    .wallet-container:hover #dropdown-before {
+      display: block;
+    }
+    
+    .wallet-container:hover #dropdown-after {
+      display: block;
+    }
+    
   #popup {
     display: none;
   
@@ -1425,22 +1499,21 @@
     #popup .popup-content p{
       letter-spacing: 1px;
       font-weight: bolder;
-
-            font-size: 1rem;
+      font-size: 0.7rem;
       font-family: 'myFont';
     }
     #popup .popup-content .btn{
       background-color: #60B9C1;
       outline: none;
-      border: 3px solid #FBE06E;
+      border: 2px solid #FBE06E;
       font-family: 'Comic Sans MS', sans-serif;
       letter-spacing: 1px;
       font-weight: bolder;
-      font-size: 1.25rem;
+      font-size: 0.6rem;
       color: #051C7D;
       font-family: 'myFont';
       border-radius: 5rem;
-      padding: 0.8rem 3rem !important;
+      padding: 0.8rem 2rem !important;
     }
     #mobile .mobile{
 

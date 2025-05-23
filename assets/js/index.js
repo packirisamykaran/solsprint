@@ -89,6 +89,8 @@ gsap.registerPlugin(ScrollTrigger);
     const walletImage   = document.getElementById('wallet');
     const walletAddress = document.getElementById('phantom-connect');
     const phantomName   = document.getElementById('phantom-name');
+    const dropdownBefore = document.getElementById('dropdown-before');
+    const dropdownAfter = document.getElementById('dropdown-after');
 
     let isConnected      = false;
     let currentPublicKey = null;
@@ -103,6 +105,8 @@ gsap.registerPlugin(ScrollTrigger);
         walletAddress.style.fontSize = "1rem";
         phantomName.textContent = "";
         isConnected = true;
+        dropdownBefore.style.display = "none";
+        dropdownAfter.style.display = "block";
       } catch (err) {
         console.error("Error updating UI on connect:", err);
       }
@@ -117,6 +121,8 @@ gsap.registerPlugin(ScrollTrigger);
         phantomName.textContent = "phantom";
         isConnected = false;
         currentPublicKey = null;
+        dropdownBefore.style.display = "block";
+        dropdownAfter.style.display = "none";
       } catch (err) {
         console.error("Error updating UI on disconnect:", err);
       }
@@ -147,3 +153,23 @@ gsap.registerPlugin(ScrollTrigger);
     console.error("Error in wallet setup:", err);
   }
 })();
+
+// -------------------------------------------
+// Tokenomics CA ID copier
+// -------------------------------------------
+
+document.getElementById('copy-icon').addEventListener('click', function () {
+  const textToCopy = document.getElementById('ca-text').textContent;
+
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    // Show popup
+    const popup = document.getElementById('copied-popup');
+    popup.style.opacity = '1';
+
+    setTimeout(() => {
+      popup.style.opacity = '0';
+    }, 1500);
+  }).catch(err => {
+    console.error('Copy failed', err);
+  });
+});

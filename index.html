@@ -55,7 +55,7 @@
       <!-- Top content -->
       <div class="head-container">
 
-        <div class="">
+        <div class="wallet-container">
           <div id="connect-wallet" class="btn-phantom">
             <img src="assets/img/wallet.png" id="wallet" alt="Phantom Logo">
             <div class="phantom-text">
@@ -63,6 +63,22 @@
               <span id="phantom-name" class="phantom-name">phantom</span>
             </div>
           </div>
+        <!-- Dropdown Before Connection -->
+  <div id="dropdown-before" class="wallet-dropdown">
+    <ul>
+      <li><a href="#">About Phantom</a></li>
+      <li><a href="#">Install Wallet</a></li>
+    </ul>
+  </div>
+
+  <!-- Dropdown After Connection -->
+  <div id="dropdown-after" class="wallet-dropdown">
+    <ul>
+      <li><a href="#">Switch</a></li>
+      <li><a href="#">Disconnect</a></li>
+    </ul>
+  </div>
+
         </div>
         <div class="col-md-6">
           <div class="ca-container">
@@ -102,9 +118,15 @@
     <div id="section-2">
       <div class="bottom-stack">
         <div class="container">
-          <!-- <img src="assets/img/game-demo.png" alt="game-demo" class="game-frame"> -->
+          <img src="assets/img/game-demo.png" alt="game-demo" class="game-frame">
           <div id="game-wrapper">
-            <div id="overlay">Click to interact</div>
+            <div id="overlay">
+              <!-- <h1>HEADS UP!</h1>
+              <p>You're playing a demo version built to preview core gameplay.
+                The full experience will include more features, mechanics, and upgrades.
+                Check out the roadmap in our whitepaper to see what's coming next.</p> -->
+              <img src="assets/img/correct.png" class="img-fluid correct" alt="">
+            </div>
             <iframe id="unity-frame" src="Game/index.html" width="100%" height="600" frameborder="0"
               allowfullscreen></iframe>
           </div>
@@ -154,10 +176,17 @@
           <div class="ca-wrapper">
             <img src="assets/img/CA Frame.png" alt="">
 
+          
+
+
             <span id="copy-ca" class="ca-text-wrapper">
-              <div class="ca-text">CA: <span id="ca-text">Cy8WknH3MZyRQYxQxFVv6PRaviNiCvLKq8n9CUawdLGB</span></div>
-              <img src="assets/img/copy-icon.png" alt="Copy" class="copy">
+              <div class="ca-text">
+                CA: <span id="ca-text">Cy8WknH3MZyRQYxQxFVv6PRaviNiCvLKq8n9CUawdLGB</span>
+              </div>
+              <img src="assets/img/copy-icon.png" alt="Copy" class="copy" id="copy-icon">
+              <div id="copied-popup" class="copied-popup">Copied!</div>
             </span>
+            
 
           </div>
 

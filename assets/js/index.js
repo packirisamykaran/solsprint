@@ -158,7 +158,7 @@ gsap.registerPlugin(ScrollTrigger);
 // Tokenomics CA ID copier
 // -------------------------------------------
 
-document.getElementById('copy-icon').addEventListener('click', function () {
+document.getElementById('copy-ca').addEventListener('click', function () {
   const textToCopy = document.getElementById('ca-text').textContent;
 
   navigator.clipboard.writeText(textToCopy).then(() => {

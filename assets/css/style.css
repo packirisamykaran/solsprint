@@ -1168,10 +1168,12 @@
     
   #popup {
     display: none;
+
   
   }
   #popup.show {
     display: flex;
+          overflow: scroll;
     justify-content: center;
     align-items: center;
   }
@@ -1588,6 +1590,7 @@
       border-radius: 2rem;
       text-align: center;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      overflow: scroll;
     }
     #popup .popup-content h3{
       letter-spacing: 1px;
@@ -1698,17 +1701,25 @@
   }
 
 
-@media (max-width: 500px) and (max-height: 800px) {
+@media (max-width: 600px) and (max-height: 800px) {
 
     #imp-not{
-      max-width:250px !important;
+      max-width:200px !important;
     }
     #logo-m{
-      max-width: 200px !important;
+      max-width: 150px !important;
     }
 
     .mobile-ca{
-  max-width: 200px !important;
+  max-width: 250px !important;
+    }
+    .social-icon {
+      width: 50px !important;
+    }
+    .whitepaper-m{
+      font-size: 0.8rem !important;
+      /* max-width: 150px !important; */
+
     }
   }
 

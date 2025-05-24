@@ -1707,6 +1707,9 @@
       max-width: 200px !important;
     }
 
+    .mobile-ca{
+  max-width: 200px !important;
+    }
   }
 
   @media (min-width: 1900px){

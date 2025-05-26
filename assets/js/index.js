@@ -80,79 +80,150 @@ gsap.registerPlugin(ScrollTrigger);
   }
 })();
 
+
 // -------------------------------------------
-// Phantom Wallet Connect Handler
+// Wallet Connect Handler (Full Code)
 // -------------------------------------------
-(function setupWalletConnection() {
-  try {
-    const connectButton = document.getElementById('connect-wallet');
-    const walletImage   = document.getElementById('wallet');
-    const walletAddress = document.getElementById('phantom-connect');
-    const phantomName   = document.getElementById('phantom-name');
-    const dropdownBefore = document.getElementById('dropdown-before');
-    const dropdownAfter = document.getElementById('dropdown-after');
+document.addEventListener('DOMContentLoaded', () => {
+  const connectButton    = document.getElementById('connect-wallet');
+  const walletImage      = document.getElementById('wallet');
+  const walletAddress    = document.getElementById('phantom-connect');
+  const dropdownBefore   = document.getElementById('dropdown-before');
+  const dropdownAfter    = document.getElementById('dropdown-after');
 
-    let isConnected      = false;
-    let currentPublicKey = null;
+  const phantomBtn       = dropdownBefore.querySelectorAll('button')[0];
+  const solflareBtn      = dropdownBefore.querySelectorAll('button')[1];
+  const solletBtn        = dropdownBefore.querySelectorAll('button')[2];
+  const metamaskBtn      = dropdownBefore.querySelectorAll('button')[3];
 
-    function updateUIOnConnect(publicKey) {
-      try {
-        currentPublicKey = publicKey;
-        walletImage.src  = "assets/img/Profile icon.png";
-        walletImage.alt  = "Connected Wallet";
-        walletAddress.textContent =
-          publicKey.toString().slice(0, 4) + "..." + publicKey.toString().slice(-4);
-        walletAddress.style.fontSize = "1rem";
-        phantomName.textContent = "";
-        isConnected = true;
-        dropdownBefore.style.display = "none";
-        dropdownAfter.style.display = "block";
-      } catch (err) {
-        console.error("Error updating UI on connect:", err);
-      }
+  const switchBtn        = dropdownAfter.querySelectorAll('button')[0];
+  const disconnectBtn    = dropdownAfter.querySelectorAll('button')[1];
+
+  let isConnected        = false;
+  let currentWallet      = null;
+  let currentPublicKey   = null;
+
+  // Toggle dropdownBefore on click
+  connectButton?.addEventListener('click', () => {
+    if (!isConnected) {
+      const isVisible = dropdownBefore.style.display === 'block';
+      dropdownBefore.style.display = isVisible ? 'none' : 'block';
     }
+  });
 
-    function updateUIOnDisconnect() {
-      try {
-        walletImage.src  = "assets/img/wallet.png";
-        walletImage.alt  = "Phantom Logo";
-        walletAddress.textContent = "CONNECT";
-        walletAddress.style.fontSize = "";
-        phantomName.textContent = "phantom";
-        isConnected = false;
-        currentPublicKey = null;
-        dropdownBefore.style.display = "block";
-        dropdownAfter.style.display = "none";
-      } catch (err) {
-        console.error("Error updating UI on disconnect:", err);
+  async function connectPhantom() {
+    try {
+      if (window.solana && window.solana.isPhantom) {
+        const resp = await window.solana.connect();
+        updateUIOnConnect(resp.publicKey, 'Phantom');
+      } else {
+        alert('Phantom Wallet not installed.');
       }
+    } catch (err) {
+      console.error('Phantom connection failed:', err);
     }
-
-    connectButton?.addEventListener('click', async e => {
-      e.preventDefault();
-      try {
-        if (isConnected) {
-          await window.solana.disconnect();
-          updateUIOnDisconnect();
-          console.log("Disconnected wallet.");
-          return;
-        }
-        if (window.solana?.isPhantom) {
-          const { publicKey } = await window.solana.connect();
-          console.log("Connected wallet address:", publicKey.toString());
-          updateUIOnConnect(publicKey);
-        } else {
-          alert("Phantom Wallet not found. Please install it: https://phantom.app");
-        }
-      } catch (err) {
-        console.error("Wallet connection failed:", err.message);
-        alert("Connection failed or rejected.");
-      }
-    });
-  } catch (err) {
-    console.error("Error in wallet setup:", err);
   }
-})();
+
+  async function connectSolflare() {
+    alert('Solflare connection not implemented.');
+  }
+
+  async function connectSollet() {
+    alert('Sollet connection not implemented.');
+  }
+
+  async function connectMetamask() {
+    try {
+      if (window.ethereum) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        updateUIOnConnect(accounts[0], 'MetaMask');
+      } else {
+        alert('MetaMask not installed.');
+      }
+    } catch (err) {
+      console.error('MetaMask connection failed:', err);
+    }
+  }
+
+  function updateUIOnConnect(publicKey, walletName) {
+    currentWallet = walletName;
+    currentPublicKey = publicKey;
+    if (walletImage) {
+      walletImage.src = 'assets/img/Profile icon.png';
+      walletImage.alt = 'Connected Wallet';
+    }
+
+    walletAddress.textContent = publicKey.toString().slice(0, 4) + '...' + publicKey.toString().slice(-4);
+    walletAddress.style.fontSize = '1rem';
+
+    isConnected = true;
+    dropdownBefore.style.display = 'none';
+    dropdownAfter.style.display = 'block';
+  }
+
+  function updateUIOnDisconnect() {
+    if (walletImage) {
+      walletImage.src = 'assets/img/wallet.png';
+      walletImage.alt = 'Phantom Logo';
+    }
+
+    walletAddress.textContent = 'CONNECT';
+    walletAddress.style.fontSize = '';
+
+    isConnected = false;
+    currentPublicKey = null;
+    currentWallet = null;
+    dropdownBefore.style.display = 'none';
+    dropdownAfter.style.display = 'none';
+  }
+
+  phantomBtn.addEventListener('click', connectPhantom);
+  solflareBtn.addEventListener('click', connectSolflare);
+  solletBtn.addEventListener('click', connectSollet);
+  metamaskBtn.addEventListener('click', connectMetamask);
+
+  disconnectBtn.addEventListener('click', updateUIOnDisconnect);
+  switchBtn.addEventListener('click', () => {
+    updateUIOnDisconnect();
+    dropdownBefore.style.display = 'block';
+  });
+});
+
+
+    
+
+
+
+    
+
+
+
+
+  //   connectButton?.addEventListener('click', async e => {
+  //     e.preventDefault();
+  //     try {
+  //       if (isConnected) {
+  //         await window.solana.disconnect();
+  //         updateUIOnDisconnect();
+  //         console.log("Disconnected wallet.");
+  //         return;
+  //       }
+  //       if (window.solana?.isPhantom) {
+  //         const { publicKey } = await window.solana.connect();
+  //         console.log("Connected wallet address:", publicKey.toString());
+  //         updateUIOnConnect(publicKey);
+  //       } else {
+  //         alert("Phantom Wallet not found. Please install it: https://phantom.app");
+  //       }
+  //     } catch (err) {
+  //       console.error("Wallet connection failed:", err.message);
+  //       alert("Connection failed or rejected.");
+  //     }
+  //   });
+  // } catch (err) {
+  //   console.error("Error in wallet setup:", err);
+  // }
+// })();
 
 // -------------------------------------------
 // Tokenomics CA ID copier

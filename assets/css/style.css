@@ -1145,7 +1145,18 @@
       list-style: none;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
     }
+        .wallet-dropdown ul button {
+          text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+      
     
     .wallet-dropdown li {
       margin: 8px 0;
@@ -1159,11 +1170,11 @@
     
     /* Show correct dropdown on hover */
     .wallet-container:hover #dropdown-before {
-      display: block;
+      /* display: block; */
     }
     
     .wallet-container:hover #dropdown-after {
-      display: block;
+      /* display: block; */
     }
     
   #popup {

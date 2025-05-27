@@ -247,3 +247,74 @@ document.getElementById('copy-ca').addEventListener('click', function () {
     console.error('Copy failed', err);
   });
 });
+
+
+// -------------------------------------------
+// Navigation, Section Scroll, Copy CA, Overlay Handler
+// -------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+  // Navigation and horizontal scrolling
+  const scrollContainer = document.getElementById('main');
+  const navButtons = document.querySelectorAll('.nav-btn');
+  const caButton = document.getElementById('ca-address');
+  const copyBox = document.getElementById('copy-ca');
+  const caText = document.getElementById('ca-text');
+  const iframe = document.getElementById('unity-frame');
+  const overlay = document.getElementById('overlay');
+
+  // Helper to avoid overscroll
+  const maxScrollLeft = () =>
+    scrollContainer.scrollWidth - scrollContainer.clientWidth;
+
+  // Navigation buttons (data-target)
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      // If <button> in nav, prevent default if it's inside a <form> or <a>
+      if (e) e.preventDefault?.();
+      const section = document.getElementById(btn.dataset.target);
+      if (!section) return;
+      const clamped = Math.min(section.offsetLeft, maxScrollLeft());
+      scrollContainer.scrollTo({ left: clamped, behavior: 'smooth' });
+    });
+  });
+
+  // CA address click scroll
+  if (caButton) {
+    caButton.style.cursor = 'pointer';
+    caButton.addEventListener('click', () => {
+      const section = document.getElementById('section-5');
+      if (!section) return;
+      const clamped = Math.min(section.offsetLeft, maxScrollLeft());
+      scrollContainer.scrollTo({ left: clamped, behavior: 'smooth' });
+    });
+  }
+
+  // Horizontal scroll on wheel
+  if (scrollContainer) {
+    scrollContainer.addEventListener('wheel', e => {
+      e.preventDefault();
+      scrollContainer.scrollLeft += e.deltaY;
+    }, { passive: false });
+  }
+
+  // Copy CA functionality
+  if (copyBox && caText) {
+    copyBox.addEventListener('click', () => {
+      const textToCopy = caText.textContent.trim();
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        copyBox.classList.add('copied');
+      }).catch(err => {
+        console.error('Copy failed:', err);
+        alert("Failed to copy. Try manually.");
+      });
+    });
+  }
+
+  // Overlay click to activate Unity iframe
+  if (iframe && overlay) {
+    overlay.addEventListener('click', () => {
+      iframe.classList.add('active');
+      overlay.style.display = 'none';
+    });
+  }
+});

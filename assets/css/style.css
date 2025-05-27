@@ -209,28 +209,47 @@
 
   #buy-btn{
     display: absolute;
-    background-color: #c4a9fc;
+    /* background-color: #c4a9fc; */
 
     /* transform: translateX(50%); */
   }
-  .connect-btn {
-      background-color: #c4a9fc;
-      color: white;
+  /* .connect-btn {
+
+      color: #f6c033;
       font-weight: bold;
       font-size: 16px;
       border-radius: 2rem;
-      /* padding: 0.5rem 1.5rem; */
+      padding: 0.5rem 1.5rem;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
       text-decoration: none;
       transition: background-color 0.3s ease;
-      font-family: 'myFont';
+ 
 
-    }
+    } */
+
+    .connect-btn {
+      background-color:  #b76900;
+    color: #eae0c9;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 2rem;
+    padding: 0.7rem 3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+         font-family: 'myFont';
+
+         min-width: 250px;
+         justify-content: center;
+        
+  }
 
     .connect-btn:hover {
-      background-color: #b295f4;
+      background-color:#a14e00;
       color: white;
       cursor: pointer;
     }
@@ -243,15 +262,17 @@
       display: flex;
       flex-direction: column;
       line-height: 1.1;
+       text-align: center;
     }
 
     .phantom-connect {
-      font-size: 12px;
+    font-size: 1rem;
       letter-spacing: 1px;
+      
     }
 
     .phantom-name {
-      font-size: 16px;
+    font-size: 1rem;
     }
 
     .wallet-container {
@@ -270,7 +291,7 @@
       top: 100%; /* place dropdown below the button */
       left: 50%;
       transform: translateX(-50%);
-      background: #d9bfff;
+   
       border-radius: 10px;
       padding: 10px;
       width: 180px;
@@ -287,11 +308,16 @@
     }
         .wallet-dropdown ul button {
           text-decoration: none;
-      color: #333;
+      color: #f9d7b4;
       font-weight: bold;
       background: transparent;
       border: none;
       cursor: pointer;
+
+      margin: 0.1rem;
+      border-radius: 10px;
+            padding: 10px;
+               background:  #a14e00d7;
     }
 
 
@@ -1282,24 +1308,7 @@
   }
 
   
-  #main .connect-btn {
-    background-color: #c4a9fc;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    border-radius: 2rem;
-    padding: 0.7rem 3rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-  }
 
-  #main .connect-btn:hover {
-    background-color: #b295f4;
-    color: white;
-  }
 
 
   #ca-address{
@@ -1332,12 +1341,12 @@
   }
 
   #main .phantom-connect {
-    font-size: 12px;
+    font-size: 1rem;
     letter-spacing: 1px;
   }
 
   #main .phantom-name {
-    font-size: 16px;
+    font-size: 12px;
   }
   #main .terrain{
     width: 100vw;

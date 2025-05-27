@@ -149,7 +149,7 @@
 
     function onDisconnect() {
       isConnected = false;
-      addrField.textContent    = ' 🪙 Connect Wallet ▾';
+      addrField.textContent    = ' 🪙 Connect ▾';
       addrField.style.fontSize = '';
       walletImg && (walletImg.src = 'assets/img/wallet.png');
       dropdownAfter.style.display = dropdownBefore.style.display = 'none';

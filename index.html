@@ -57,11 +57,11 @@
       <div class="head-container">
 
         <div class="wallet-container">
-          <div id="connect-wallet" class="btn-phantom">
+          <div id="connect-wallet" class="connect-btn">
             <!-- <img src="assets/img/wallet.png" id="wallet" alt="Phantom Logo"> -->
-            <div class="phantom-text">
-              <span id="phantom-connect" class="phantom-connect">CONNECT</span>
-
+            <div class="connect-btn-text">
+              <span id="phantom-connect" class="phantom-connect"> 🪙 Connect Wallet ▾
+              </span>
             </div>
           </div>
           <!-- Dropdown Before Connection -->
@@ -130,7 +130,7 @@
                 Check out the roadmap in our whitepaper to see what's coming next.</p>
               <img src="assets/img/correct.png" class="img-fluid correct" alt="">
             </div>
-            <iframe id="unity-frame" src="Game/index.html" frameborder="0" allowfullscreen></iframe>
+            <iframe id="unity-frame" src="Game/index.html" frameborder="5" allowfullscreen></iframe>
           </div>
 
         </div>
@@ -527,10 +527,10 @@
   });
 
   // Optional: Reset interaction when user clicks outside the iframe
-  window.addEventListener('click', (e) => {
-    if (!iframe.contains(e.target) && !overlay.contains(e.target)) {
-      iframe.classList.remove('active');
-      overlay.style.display = 'block';
-    }
-  });
+  // window.addEventListener('click', (e) => {
+  //   if (!iframe.contains(e.target) && !overlay.contains(e.target)) {
+  //     iframe.classList.remove('active');
+  //     overlay.style.display = 'block';
+  //   }
+  // });
 </script>

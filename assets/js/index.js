@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
       walletImage.alt = 'Phantom Logo';
     }
 
-    walletAddress.textContent = 'CONNECT';
+    walletAddress.textContent = ' 🪙  Connect Wallet ▾';
     walletAddress.style.fontSize = '';
 
     isConnected = false;

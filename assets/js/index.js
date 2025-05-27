@@ -1,320 +1,230 @@
-// ------------------------------------
-// Music Playback on First Click
-// ------------------------------------
-window.addEventListener('click', () => {
-  try {
-    const music = document.getElementById('bgMusic');
-    if (music) {
-      music.muted = false;
-      music.play().catch(err => console.warn("bgMusic play error:", err));
-    }
-  } catch (err) {
-    console.error("Error in bgMusic setup:", err);
-  }
-});
+/* assets/js/index.js – Sol Sprint
+   Optimised & modular, ready to drop in. */
 
-// ------------------------------------
-// Delayed Popup, Scroll Lock, and Popup Sound
-// ------------------------------------
-(function setupPopup() {
-  window.addEventListener('load', () => {
-    const popupEl  = document.getElementById('popup');
-    const closeBtn = document.getElementById('closePopup');
+/* eslint-env browser */
+/* eslint-disable no-console */
 
-    // 1) Lock native scrolling immediately
-    document.body.style.overflow = 'hidden';
+(() => {
+  'use strict';
 
-    // 2) After 1s, show the popup + play its sound + disable GSAP ScrollTriggers
-    setTimeout(() => {
-      try {
-        popupEl?.classList.add('show');
-        document.getElementById('popupSound')?.play().catch(err => console.warn("popupSound play error:", err));
-        if (window.ScrollTrigger) {
-          ScrollTrigger.getAll().forEach(t => t.disable());
-        }
-      } catch (err) {
-        console.error("Error showing popup:", err);
-      }
-    }, 500);
+  /* ---------- tiny DOM helpers ---------- */
+  const $  = (s, ctx = document) => ctx.querySelector(s);
+  const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
 
-    // 3) On “GOT IT!”, hide the popup, re-enable native scrolling & GSAP
-    closeBtn?.addEventListener('click', () => {
-      try {
-        popupEl?.classList.remove('show');
-        document.body.style.overflow = '';
-        if (window.ScrollTrigger) {
-          ScrollTrigger.getAll().forEach(t => t.enable());
-        }
-      } catch (err) {
-        console.error("Error closing popup:", err);
-      }
-    });
+  /* ---------- boot sequence ---------- */
+  document.addEventListener('DOMContentLoaded', () => {
+    initAudioOnFirstClick();
+    initPopup();
+    initHorizontalScroll();
+    initWalletConnect();
+    initCopyCA();
+    initNavigation();
   });
-})();
 
-// -------------------------------------------
-// GSAP Horizontal Scroll Setup
-// -------------------------------------------
-gsap.registerPlugin(ScrollTrigger);
-(function setupHorizontalScroll() {
-  try {
-    const container = document.querySelector('#main');
-    const sections  = gsap.utils.toArray('.content');
-    const speed     = 15;
+  /* =================================================
+     1. Audio – un-mute bg music on first interaction
+  ================================================= */
+  function initAudioOnFirstClick() {
+    const bg = $('#bgMusic');
+    if (!bg) return;
+    window.addEventListener(
+      'click',
+      () => {
+        bg.muted = false;
+        bg.play().catch(err => console.warn('bgMusic play error:', err));
+      },
+      { once: true, passive: true }
+    );
+  }
 
+  /* ================================================
+     2. Landing popup – locks scroll & disables GSAP
+  ================================================ */
+  function initPopup() {
+    window.addEventListener('load', () => {
+      const popup = $('#popup');
+      const close = $('#closePopup');
+      const tone  = $('#popupSound');
+      if (!popup || !close) return;
+
+      document.body.style.overflow = 'hidden';
+
+      setTimeout(() => {
+        popup.classList.add('show');
+        tone?.play().catch(err => console.warn('popupSound error:', err));
+        window.ScrollTrigger?.getAll().forEach(t => t.disable());
+      }, 500);
+
+      close.addEventListener('click', () => {
+        popup.classList.remove('show');
+        document.body.style.overflow = '';
+        window.ScrollTrigger?.getAll().forEach(t => t.enable());
+      });
+    });
+  }
+
+  /* ================================================
+     3. GSAP horizontal scroll (desktop)
+  ================================================ */
+  function initHorizontalScroll() {
+    if (!window.gsap || !window.ScrollTrigger) return;
+    const container = $('#main');
+    const sections  = $$('.content');
     if (!container || !sections.length) return;
+
+    gsap.registerPlugin(ScrollTrigger);
 
     gsap.to(sections, {
       xPercent: -100 * (sections.length - 1),
       ease: 'none',
       scrollTrigger: {
         trigger: container,
-        pin:     true,
-        scrub:   0.8,
-        end:     () => `+=${container.offsetWidth * speed}`,
-        invalidateOnRefresh: true,
+        pin: true,
+        scrub: 0.8,
+        end: () => `+=${container.offsetWidth * 15}`,
+        invalidateOnRefresh: true
       }
     });
-  } catch (err) {
-    console.error("Error in horizontal scroll setup:", err);
+  }
+
+  /* ================================================
+     4. Wallet connect dropdown logic
+  ================================================ */
+  function initWalletConnect() {
+    const connectBtn     = $('#connect-wallet');
+    const dropdownBefore = $('#dropdown-before');
+    const dropdownAfter  = $('#dropdown-after');
+    const addrField      = $('#phantom-connect');
+    const walletImg      = $('#wallet');
+
+    if (!connectBtn || !dropdownBefore || !dropdownAfter || !addrField) return;
+
+    const [phantomBtn, solflareBtn, solletBtn, metamaskBtn] = $$('#dropdown-before button');
+    const disconnectBtn = $('#dropdown-after button');
+
+    let isConnected = false;
+
+    connectBtn.addEventListener('click', () => {
+      if (isConnected) {
+        dropdownAfter.style.display  = dropdownAfter.style.display === 'block' ? 'none' : 'block';
+      } else {
+        dropdownBefore.style.display = dropdownBefore.style.display === 'block' ? 'none' : 'block';
+      }
+    });
+
+    phantomBtn?.addEventListener('click', async () => {
+      if (!window.solana?.isPhantom) return alert('Phantom Wallet not installed.');
+      try {
+        const { publicKey } = await window.solana.connect();
+        onConnect(publicKey.toString(), 'Phantom');
+      } catch (err) {
+        console.error('Phantom connect error:', err);
+      }
+    });
+
+    solflareBtn?.addEventListener('click', () => alert('Solflare connection not implemented.'));
+    solletBtn?.addEventListener('click',   () => alert('Sollet connection not implemented.'));
+
+    metamaskBtn?.addEventListener('click', async () => {
+      if (!window.ethereum) return alert('MetaMask not installed.');
+      try {
+        const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        onConnect(account, 'MetaMask');
+      } catch (err) {
+        console.error('MetaMask connect error:', err);
+      }
+    });
+
+    disconnectBtn?.addEventListener('click', onDisconnect);
+
+    function onConnect(addr, provider) {
+      isConnected = true;
+      addrField.textContent     = `${addr.slice(0,4)}…${addr.slice(-4)}`;
+      addrField.style.fontSize  = '1rem';
+      walletImg && (walletImg.src = 'assets/img/Profile icon.png');
+      dropdownBefore.style.display = 'none';
+      // dropdownAfter.style.display  = 'block';
+      console.info(`Connected to ${provider}: ${addr}`);
+    }
+
+    function onDisconnect() {
+      isConnected = false;
+      addrField.textContent    = ' 🪙 Connect Wallet ▾';
+      addrField.style.fontSize = '';
+      walletImg && (walletImg.src = 'assets/img/wallet.png');
+      dropdownAfter.style.display = dropdownBefore.style.display = 'none';
+    }
+  }
+
+  /* ================================================
+     5. Copy CA to clipboard
+  ================================================ */
+  function initCopyCA() {
+    const copyBox = $('#copy-ca');
+    const caText  = $('#ca-text');
+    const pop     = $('#copied-popup');
+    if (!copyBox || !caText || !pop) return;
+
+    copyBox.addEventListener('click', () => {
+      navigator.clipboard
+        .writeText(caText.textContent.trim())
+        .then(() => {
+          pop.style.opacity = '1';
+          setTimeout(() => (pop.style.opacity = '0'), 1500);
+        })
+        .catch(err => {
+          console.error('Clipboard copy failed:', err);
+          alert('Copy failed – please try again.');
+        });
+    });
+  }
+
+  /* ================================================
+     6. Navigation & horizontal scroll helpers
+  ================================================ */
+  function initNavigation() {
+    const container = $('#main');
+    if (!container) return;
+
+    const navBtns = $$('.nav-btn');
+    const caBtn   = $('#ca-address');
+    const iframe  = $('#unity-frame');
+    const overlay = $('#overlay');
+
+    const maxLeft = () => container.scrollWidth - container.clientWidth;
+
+    const scrollTo = id => {
+      const sec = $(`#${id}`);
+      if (!sec) return;
+      container.scrollTo({
+        left: Math.min(sec.offsetLeft, maxLeft()),
+        behavior: 'smooth'
+      });
+    };
+
+    navBtns.forEach(btn =>
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        scrollTo(btn.dataset.target);
+      })
+    );
+
+    caBtn?.addEventListener('click', () => scrollTo('section-5'));
+
+    container.addEventListener(
+      'wheel',
+      e => {
+        e.preventDefault();
+        container.scrollLeft += e.deltaY;
+      },
+      { passive: false }
+    );
+
+    if (iframe && overlay) {
+      overlay.addEventListener('click', () => {
+        iframe.classList.add('active');
+        overlay.style.display = 'none';
+      });
+    }
   }
 })();
-
-
-// -------------------------------------------
-// Wallet Connect Handler (Full Code)
-// -------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-  const connectButton    = document.getElementById('connect-wallet');
-  const walletImage      = document.getElementById('wallet');
-  const walletAddress    = document.getElementById('phantom-connect');
-  const dropdownBefore   = document.getElementById('dropdown-before');
-  const dropdownAfter    = document.getElementById('dropdown-after');
-
-  const phantomBtn       = dropdownBefore.querySelectorAll('button')[0];
-  const solflareBtn      = dropdownBefore.querySelectorAll('button')[1];
-  const solletBtn        = dropdownBefore.querySelectorAll('button')[2];
-  const metamaskBtn      = dropdownBefore.querySelectorAll('button')[3];
-
-
-  const disconnectBtn    = dropdownAfter.querySelectorAll('button')[0];
-
-  let isConnected        = false;
-  let currentWallet      = null;
-  let currentPublicKey   = null;
-
-  // Toggle dropdownBefore on click
-  connectButton?.addEventListener('click', () => {
-    if (!isConnected) {
-      const isVisible = dropdownBefore.style.display === 'block';
-      dropdownBefore.style.display = isVisible ? 'none' : 'block';
-    }
-    else {
-      dropdownAfter.style.display = dropdownAfter.style.display === 'block' ? 'none' : 'block';
-    }
-  });
-
-  async function connectPhantom() {
-    try {
-      if (window.solana && window.solana.isPhantom) {
-        const resp = await window.solana.connect();
-        updateUIOnConnect(resp.publicKey, 'Phantom');
-      } else {
-        alert('Phantom Wallet not installed.');
-      }
-    } catch (err) {
-      console.error('Phantom connection failed:', err);
-    }
-  }
-
-  async function connectSolflare() {
-    alert('Solflare connection not implemented.');
-  }
-
-  async function connectSollet() {
-    alert('Sollet connection not implemented.');
-  }
-
-  async function connectMetamask() {
-    try {
-      if (window.ethereum) {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        updateUIOnConnect(accounts[0], 'MetaMask');
-      } else {
-        alert('MetaMask not installed.');
-      }
-    } catch (err) {
-      console.error('MetaMask connection failed:', err);
-    }
-  }
-
-  function updateUIOnConnect(publicKey, walletName) {
-    currentWallet = walletName;
-    currentPublicKey = publicKey;
-    if (walletImage) {
-      walletImage.src = 'assets/img/Profile icon.png';
-      walletImage.alt = 'Connected Wallet';
-    }
-
-    walletAddress.textContent = publicKey.toString().slice(0, 4) + '...' + publicKey.toString().slice(-4);
-    walletAddress.style.fontSize = '1rem';
-
-    isConnected = true;
-    dropdownBefore.style.display = 'none';
-    // dropdownAfter.style.display = 'block';
-  }
-
-  function updateUIOnDisconnect() {
-    if (walletImage) {
-      walletImage.src = 'assets/img/wallet.png';
-      walletImage.alt = 'Phantom Logo';
-    }
-
-    walletAddress.textContent = ' 🪙  Connect Wallet ▾';
-    walletAddress.style.fontSize = '';
-
-    isConnected = false;
-    currentPublicKey = null;
-    currentWallet = null;
-    dropdownBefore.style.display = 'none';
-    dropdownAfter.style.display = 'none';
-  }
-
-  phantomBtn.addEventListener('click', connectPhantom);
-  solflareBtn.addEventListener('click', connectSolflare);
-  solletBtn.addEventListener('click', connectSollet);
-  metamaskBtn.addEventListener('click', connectMetamask);
-
-  disconnectBtn.addEventListener('click', updateUIOnDisconnect);
-  switchBtn.addEventListener('click', () => {
-    updateUIOnDisconnect();
-    dropdownBefore.style.display = 'block';
-  });
-});
-
-
-    
-
-
-
-    
-
-
-
-
-  //   connectButton?.addEventListener('click', async e => {
-  //     e.preventDefault();
-  //     try {
-  //       if (isConnected) {
-  //         await window.solana.disconnect();
-  //         updateUIOnDisconnect();
-  //         console.log("Disconnected wallet.");
-  //         return;
-  //       }
-  //       if (window.solana?.isPhantom) {
-  //         const { publicKey } = await window.solana.connect();
-  //         console.log("Connected wallet address:", publicKey.toString());
-  //         updateUIOnConnect(publicKey);
-  //       } else {
-  //         alert("Phantom Wallet not found. Please install it: https://phantom.app");
-  //       }
-  //     } catch (err) {
-  //       console.error("Wallet connection failed:", err.message);
-  //       alert("Connection failed or rejected.");
-  //     }
-  //   });
-  // } catch (err) {
-  //   console.error("Error in wallet setup:", err);
-  // }
-// })();
-
-// -------------------------------------------
-// Tokenomics CA ID copier
-// -------------------------------------------
-
-document.getElementById('copy-ca').addEventListener('click', function () {
-  const textToCopy = document.getElementById('ca-text').textContent;
-
-  navigator.clipboard.writeText(textToCopy).then(() => {
-    // Show popup
-    const popup = document.getElementById('copied-popup');
-    popup.style.opacity = '1';
-
-    setTimeout(() => {
-      popup.style.opacity = '0';
-    }, 1500);
-  }).catch(err => {
-    console.error('Copy failed', err);
-  });
-});
-
-
-// -------------------------------------------
-// Navigation, Section Scroll, Copy CA, Overlay Handler
-// -------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-  // Navigation and horizontal scrolling
-  const scrollContainer = document.getElementById('main');
-  const navButtons = document.querySelectorAll('.nav-btn');
-  const caButton = document.getElementById('ca-address');
-  const copyBox = document.getElementById('copy-ca');
-  const caText = document.getElementById('ca-text');
-  const iframe = document.getElementById('unity-frame');
-  const overlay = document.getElementById('overlay');
-
-  // Helper to avoid overscroll
-  const maxScrollLeft = () =>
-    scrollContainer.scrollWidth - scrollContainer.clientWidth;
-
-  // Navigation buttons (data-target)
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      // If <button> in nav, prevent default if it's inside a <form> or <a>
-      if (e) e.preventDefault?.();
-      const section = document.getElementById(btn.dataset.target);
-      if (!section) return;
-      const clamped = Math.min(section.offsetLeft, maxScrollLeft());
-      scrollContainer.scrollTo({ left: clamped, behavior: 'smooth' });
-    });
-  });
-
-  // CA address click scroll
-  if (caButton) {
-    caButton.style.cursor = 'pointer';
-    caButton.addEventListener('click', () => {
-      const section = document.getElementById('section-5');
-      if (!section) return;
-      const clamped = Math.min(section.offsetLeft, maxScrollLeft());
-      scrollContainer.scrollTo({ left: clamped, behavior: 'smooth' });
-    });
-  }
-
-  // Horizontal scroll on wheel
-  if (scrollContainer) {
-    scrollContainer.addEventListener('wheel', e => {
-      e.preventDefault();
-      scrollContainer.scrollLeft += e.deltaY;
-    }, { passive: false });
-  }
-
-  // Copy CA functionality
-  if (copyBox && caText) {
-    copyBox.addEventListener('click', () => {
-      const textToCopy = caText.textContent.trim();
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        copyBox.classList.add('copied');
-      }).catch(err => {
-        console.error('Copy failed:', err);
-        alert("Failed to copy. Try manually.");
-      });
-    });
-  }
-
-  // Overlay click to activate Unity iframe
-  if (iframe && overlay) {
-    overlay.addEventListener('click', () => {
-      iframe.classList.add('active');
-      overlay.style.display = 'none';
-    });
-  }
-});

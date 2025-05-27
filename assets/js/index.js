@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const solletBtn        = dropdownBefore.querySelectorAll('button')[2];
   const metamaskBtn      = dropdownBefore.querySelectorAll('button')[3];
 
-  const switchBtn        = dropdownAfter.querySelectorAll('button')[0];
-  const disconnectBtn    = dropdownAfter.querySelectorAll('button')[1];
+
+  const disconnectBtn    = dropdownAfter.querySelectorAll('button')[0];
 
   let isConnected        = false;
   let currentWallet      = null;
@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isConnected) {
       const isVisible = dropdownBefore.style.display === 'block';
       dropdownBefore.style.display = isVisible ? 'none' : 'block';
+    }
+    else {
+      dropdownAfter.style.display = dropdownAfter.style.display === 'block' ? 'none' : 'block';
     }
   });
 
@@ -158,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     isConnected = true;
     dropdownBefore.style.display = 'none';
-    dropdownAfter.style.display = 'block';
+    // dropdownAfter.style.display = 'block';
   }
 
   function updateUIOnDisconnect() {

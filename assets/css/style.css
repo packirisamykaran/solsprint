@@ -1158,24 +1158,9 @@
     }
       
     
-    .wallet-dropdown li {
-      margin: 8px 0;
-    }
+   
     
-    .wallet-dropdown a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-    
-    /* Show correct dropdown on hover */
-    .wallet-container:hover #dropdown-before {
-      /* display: block; */
-    }
-    
-    .wallet-container:hover #dropdown-after {
-      /* display: block; */
-    }
+   
     
   #popup {
     display: none;

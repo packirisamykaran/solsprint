@@ -1112,6 +1112,7 @@ scale: 0.8;
   line-height: 1;
   text-align: center;
   font-size: 0.9rem;
+  scale: 1.2;
   /* z-index: -1; */
 }
 

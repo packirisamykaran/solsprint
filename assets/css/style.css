@@ -458,7 +458,8 @@ scale: 0.8;
 
 
   background: transparent;
-    background-color: #F9EF60;
+
+        background-color: #001C87;
   text-align: center;
 
 
@@ -482,12 +483,12 @@ scale: 0.8;
 
 #section-2 #overlay h1{
   font-family: 'myFont';
-  color: #5A3400;
+color: #F9EF60;
 
 }
 #section-2 #overlay p{
   font-size: 0.8rem;
-   color: #5A3400;
+color: #F9EF60;
      margin-top: 2rem;
 }
 

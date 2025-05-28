@@ -103,6 +103,19 @@
 
   }
 
+
+#demo-banner{
+position: absolute;
+left: 80%;
+top: 5%;
+scale: 0.8;
+
+}
+
+
+#pf-logo{
+  scale: 0.9;
+}
   #section-1 .buy-btn{
     max-width: 200px;
     
@@ -111,6 +124,7 @@
 
 
   #section-1 .bottom-stack{
+
 
     width: 100vw;
 

@@ -483,7 +483,7 @@ max-width: 500px;
 
   background: transparent;
 
-        background-color: #001C87;
+background-color: #FFF269;
   text-align: center;
 
 
@@ -507,12 +507,12 @@ max-width: 500px;
 
 #section-2 #overlay h1{
   font-family: 'myFont';
-color: #F9EF60;
+color:  #5A3400;
 
 }
 #section-2 #overlay p{
   font-size: 0.8rem;
-color: #F9EF60;
+color:  #5A3400;
      margin-top: 2rem;
 }
 

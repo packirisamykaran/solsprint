@@ -107,8 +107,9 @@
 #demo-banner{
 position: absolute;
 left: 80%;
-top: 5%;
+top: 10%;
 scale: 0.8;
+max-width: 500px;
 
 }
 

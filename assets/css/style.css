@@ -24,6 +24,19 @@
   }
 
 
+  #music-btn{
+    /* position: absolute; */
+    /* max-width: 50px; */
+    /* top: 80%; */
+    /* left: 5%; */
+    /* width: 100%; */
+width: 30px;
+
+    /* padding: 0.2rem 2rem !important; */
+    z-index: 5;
+  }
+
+
    .ca-container {
     display: flex;
     align-items: center;

@@ -24,18 +24,34 @@
   /* =================================================
      1. Audio – un-mute bg music on first interaction
   ================================================= */
-  function initAudioOnFirstClick() {
-    const bg = $('#bgMusic');
-    if (!bg) return;
-    window.addEventListener(
-      'click',
-      () => {
-        bg.muted = false;
-        bg.play().catch(err => console.warn('bgMusic play error:', err));
-      },
-      { once: true, passive: true }
-    );
-  }
+function initAudioOnFirstClick() {
+  const bg = $('#bgMusic');
+  const musicToggleBtn = $('#music-bt-ctn');
+  const musicIcon = $('#music-btn');
+
+  if (!bg || !musicToggleBtn || !musicIcon) return;
+
+  window.addEventListener(
+    'click',
+    () => {
+      bg.muted = false;
+      bg.play().catch(err => console.warn('bgMusic play error:', err));
+    },
+    { once: true, passive: true }
+  );
+
+  musicToggleBtn.addEventListener('click', () => {
+    if (bg.paused) {
+      bg.play().catch(err => console.warn('bgMusic play error:', err));
+      musicIcon.src = 'assets/img/music on.png';
+    } else {
+      bg.pause();
+      musicIcon.src = 'assets/img/music off.png';
+    }
+  });
+}
+
+
 
   /* ================================================
      2. Landing popup – locks scroll & disables GSAP

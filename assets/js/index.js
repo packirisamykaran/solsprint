@@ -20,6 +20,7 @@
     initWalletConnect();
     initCopyCA();
     initNavigation();
+    initCopyCAMob();
   });
 
   /* =================================================
@@ -143,7 +144,7 @@ function initAudioOnFirstClickMobile() {
 
     if (!connectBtn || !dropdownBefore || !dropdownAfter || !addrField) return;
 
-    const [phantomBtn, solflareBtn, solletBtn, metamaskBtn] = $$('#dropdown-before button');
+    const [phantomBtn, solflareBtn, backpackBtn, metamaskBtn] = $$('#dropdown-before button');
     const disconnectBtn = $('#dropdown-after button');
 
     let isConnected = false;
@@ -166,8 +167,27 @@ function initAudioOnFirstClickMobile() {
       }
     });
 
-    solflareBtn?.addEventListener('click', () => alert('Solflare connection not implemented.'));
-    solletBtn?.addEventListener('click',   () => alert('Sollet connection not implemented.'));
+    solflareBtn?.addEventListener('click', async () => {
+      if (!window.solflare?.connect) return alert('Solflare Wallet not installed or not supported.');
+      try {
+        const res = await window.solflare.connect();
+        const addr = res?.publicKey?.toString();
+        if (addr) onConnect(addr, 'Solflare');
+      } catch (err) {
+        console.error('Solflare connect error:', err);
+      }
+    });
+
+    backpackBtn?.addEventListener('click', async () => {
+      if (!window.backpack?.solana?.connect) return alert('Backpack Wallet not installed or not supported.');
+      try {
+        const res = await window.backpack.solana.connect();
+        const addr = res?.publicKey?.toString();
+        if (addr) onConnect(addr, 'Backpack');
+      } catch (err) {
+        console.error('Backpack connect error:', err);
+      }
+    });
 
     metamaskBtn?.addEventListener('click', async () => {
       if (!window.ethereum) return alert('MetaMask not installed.');
@@ -212,6 +232,27 @@ function initAudioOnFirstClickMobile() {
     copyBox.addEventListener('click', () => {
       navigator.clipboard
         .writeText(caText.textContent.trim())
+        .then(() => {
+          pop.style.opacity = '1';
+          setTimeout(() => (pop.style.opacity = '0'), 1500);
+        })
+        .catch(err => {
+          console.error('Clipboard copy failed:', err);
+          alert('Copy failed – please try again.');
+        });
+    });
+  }
+
+
+    function initCopyCAMob() {
+    const copyBox = $('#mobile-ca');
+    const caText  = $('#ca-text-m');
+    const pop     = $('#copied-popup-m');
+    if (!copyBox || !caText || !pop) return;
+
+    copyBox.addEventListener('click', () => {
+      navigator.clipboard
+        .writeText("test")
         .then(() => {
           pop.style.opacity = '1';
           setTimeout(() => (pop.style.opacity = '0'), 1500);

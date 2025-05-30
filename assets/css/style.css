@@ -131,6 +131,11 @@ max-width: 500px;
 
 }
 
+.copy-icon-m{
+  padding-right: 0.5rem;
+  max-width: 30px !important;
+}
+
 
 #pf-logo{
   scale: 0.9;
@@ -287,6 +292,8 @@ max-width: 500px;
       cursor: pointer;
     }
 
+
+
     .connect-btn img {
       height: 24px;
     }
@@ -317,6 +324,36 @@ max-width: 500px;
       align-items: center;
       justify-content: center;
     }
+
+    #wallet-notification{
+      display: none;
+      position: absolute;
+      top: 0;
+      font-family: "myFont";
+      top: 110%;
+           background:  #a14e00d7;
+           border-radius: 20px;
+           padding: 1rem;
+           font-size: 0.8rem;
+           text-align: center;
+color: #FFF269;
+               background-color: #001C87;
+              
+
+    }
+
+  .wallet-dropdown:hover  #wallet-notification{
+      display: none !important;
+       /* z-index: 5; */
+     }
+
+
+          .wallet-container:hover #wallet-notification{
+      display: block;
+       /* z-index: 5;  */
+     }
+
+
     
     .wallet-dropdown {
       display: none;
@@ -329,7 +366,7 @@ max-width: 500px;
       padding: 10px;
       width: 180px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
+      z-index: 2;
     }
     
     .wallet-dropdown ul {
@@ -724,7 +761,8 @@ color:  #5A3400;
   right: 0;
   font-size: 14px;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  
+  
   pointer-events: none;
   z-index: 100;
 }
@@ -1711,6 +1749,7 @@ font-weight: 400 !important;
       align-items: center;
       scale: 1.5;
       border-radius: 20px;
+      margin-bottom: 1rem;
     }
     #mobile .mobile-ca{
       border: 2px solid #222;
@@ -1732,6 +1771,7 @@ font-weight: 400 !important;
 
      .social-icons-m{
       z-index: 4;
+      margin-top: 1rem;
     }
      #mobile .mobile-container img{
       max-width: 500px;
@@ -1745,6 +1785,27 @@ font-weight: 400 !important;
       justify-content: space-between;
       width: 100%;
       z-index: 5;
+    }
+
+
+
+    .copied-popup-m{
+      position: absolute;
+      padding: 0.5rem 1rem;
+       background-color: #4BB543;
+       color: white;
+       font-family: "myFont";
+        border-radius: 5px;
+        transition: opacity 0.3s ease;
+        border-radius: 10px;
+        margin: 0.2rem;
+          opacity: 0;
+          /* bottom: 60%; */
+
+          left: 50%;
+
+          transform: translate(-50%, -160%);
+          z-index: 10000;
     }
 
 

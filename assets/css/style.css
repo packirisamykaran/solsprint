@@ -37,6 +37,11 @@ width: 30px;
   }
 
 
+  #music-btn-m{
+    width: 100%;
+    max-width: 60px !important;
+  }
+
    .ca-container {
     display: flex;
     align-items: center;
@@ -1718,6 +1723,10 @@ color: #F9EF60;
 
     }
 
+
+     .social-icons-m{
+      z-index: 4;
+    }
      #mobile .mobile-container img{
       max-width: 500px;
      }
@@ -1729,7 +1738,10 @@ color: #F9EF60;
       display: flex;
       justify-content: space-between;
       width: 100%;
+      z-index: 5;
     }
+
+
     #mobile .social-icon{
       width: 80px;
     }
@@ -1771,6 +1783,10 @@ color: #F9EF60;
       font-size: 0.8rem !important;
       /* max-width: 150px !important; */
 
+    }
+
+    .social-icons-m{
+      z-index: 4;
     }
   }
 

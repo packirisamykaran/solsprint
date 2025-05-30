@@ -14,6 +14,7 @@
   /* ---------- boot sequence ---------- */
   document.addEventListener('DOMContentLoaded', () => {
     initAudioOnFirstClick();
+    initAudioOnFirstClickMobile();
     initPopup();
     initHorizontalScroll();
     initWalletConnect();
@@ -51,6 +52,33 @@ function initAudioOnFirstClick() {
   });
 }
 
+
+function initAudioOnFirstClickMobile() {
+  const bg = $('#bgMusic');
+
+  const musicIcon = $('#music-btn-m');
+
+  if (!bg || !musicIcon) return;
+
+  window.addEventListener(
+    'touchstart', 
+    () => {
+      bg.muted = false;
+      bg.play().catch(err => console.warn('bgMusic play error:', err));
+    },
+    { once: true, passive: true }
+  );
+
+  musicIcon.addEventListener('click', () => {
+    if (bg.paused) {
+      bg.play().catch(err => console.warn('bgMusic play error:', err));
+      musicIcon.src = 'assets/img/music on m.png';
+    } else {
+      bg.pause();
+      musicIcon.src = 'assets/img/music off m.png';
+    }
+  });
+}
 
 
   /* ================================================

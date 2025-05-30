@@ -347,10 +347,15 @@ max-width: 500px;
       border: none;
       cursor: pointer;
 
+      font-family: "myFont";
+
       margin: 0.1rem;
       border-radius: 10px;
             padding: 10px;
                background:  #a14e00d7;
+    }
+    .wallet-dropdown img{
+      max-width: 15px;
     }
 
 

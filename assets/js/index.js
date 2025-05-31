@@ -114,7 +114,7 @@ function initAudioOnFirstClickMobile() {
   function initHorizontalScroll() {
     if (!window.gsap || !window.ScrollTrigger) return;
     const container = $('#main');
-    const sections  = $$('.content');
+    const sections  = $$('.section');
     if (!container || !sections.length) return;
 
     gsap.registerPlugin(ScrollTrigger);

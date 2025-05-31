@@ -328,3 +328,17 @@
     }
   }
 })();
+
+
+
+
+const connectWallet = document.getElementById('connect-wallet');
+const walletNotification = document.getElementById('wallet-notification');
+
+connectWallet.addEventListener('mouseenter', () => {
+  walletNotification.style.display = 'block';
+});
+
+connectWallet.addEventListener('mouseleave', () => {
+  walletNotification.style.display = 'none';
+});

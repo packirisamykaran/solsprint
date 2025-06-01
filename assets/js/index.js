@@ -124,7 +124,7 @@
         'wheel',
         e => {
           e.preventDefault();
-          container.scrollLeft += e.deltaY * 0.2;
+          container.scrollLeft += e.deltaY * 0.3;
         },
         { passive: false }
       );

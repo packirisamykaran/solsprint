@@ -183,10 +183,20 @@
     });
 
     solflareBtn?.addEventListener('click', async () => {
-      if (!window.solflare?.connect) return alert('Solflare Wallet not installed or not supported.');
+
+      if (!window.solflare?.connect) return alert('Solflare Wallet not installed');
+
       try {
-        const res = await window.solflare.connect();
+        const res = await window.solflare;
+        res.connect()
+
+
         const addr = res?.publicKey?.toString();
+
+
+
+
+
         if (addr) onConnect(addr, 'Solflare');
       } catch (err) {
         console.error('Solflare connect error:', err);
@@ -194,7 +204,7 @@
     });
 
     backpackBtn?.addEventListener('click', async () => {
-      if (!window.backpack?.solana?.connect) return alert('Backpack Wallet not installed or not supported.');
+      if (!window.backpack?.solana?.connect) return alert('Backpack Wallet not installed');
       try {
         const res = await window.backpack.solana.connect();
         const addr = res?.publicKey?.toString();

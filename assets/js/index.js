@@ -124,7 +124,7 @@
         'wheel',
         e => {
           e.preventDefault();
-          container.scrollLeft += e.deltaY * 0.3;
+          container.scrollLeft += e.deltaY * 0.35;
         },
         { passive: false }
       );
@@ -334,6 +334,16 @@
       overlay.addEventListener('click', () => {
         iframe.classList.add('active');
         overlay.style.display = 'none';
+
+        const bg = $('#bgMusic');
+
+        const musicIcon = $('#music-btn');
+
+        if (!bg.paused) {
+          bg.pause();
+          musicIcon.src = 'assets/img/music off.png';
+        }
+
       });
     }
   }

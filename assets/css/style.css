@@ -6,12 +6,20 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-y: scroll;
+  overflow: scroll;
+
+
+
+
 
 
 }
 
-body {}
+body {
+  /* overflow-y: scroll; */
+
+
+}
 
 
 
@@ -24,8 +32,10 @@ body {}
   /* background-attachment: fixed;  */
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  /* overflow-x: scroll; */
+  /* overflow-y: hidden; */
+
+
 
 
 

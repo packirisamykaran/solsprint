@@ -15,7 +15,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     initAudioOnFirstClick();
     initAudioOnFirstClickMobile();
-    // initPopup();
+    initPopup();
     initHorizontalScroll();
     initWalletConnect();
     initCopyCA();
@@ -93,7 +93,7 @@
       const tone = $('#popupSound');
       if (!popup || !close) return;
 
-      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
 
       setTimeout(() => {
         popup.classList.add('show');
@@ -103,7 +103,7 @@
 
       close.addEventListener('click', () => {
         popup.classList.remove('show');
-        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
         window.ScrollTrigger?.getAll().forEach(t => t.enable());
       });
     });
@@ -121,15 +121,6 @@
 
       if (!container || !sections.length) return;
 
-      // Enable vertical scrolling to trigger horizontal scroll
-      // container.addEventListener(
-      //   'wheel',
-      //   e => {
-      //     e.preventDefault();
-      //     container.scrollLeft += e.deltaY * 0.5; // adjust sensitivity
-      //   },
-      //   { passive: false }
-      // );
 
       gsap.to(sections, {
         xPercent: -100 * (sections.length - 1),
@@ -137,7 +128,7 @@
         scrollTrigger: {
           trigger: container,
           pin: true,
-          scrub: 0.8,
+          scrub: 1,
           invalidateOnRefresh: true,
           end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
         }
@@ -321,14 +312,7 @@
 
     caBtn?.addEventListener('click', () => scrollTo('section-5'));
 
-    // container.addEventListener(
-    //   'wheel',
-    //   e => {
-    //     e.preventDefault();
-    //     container.scrollLeft += e.deltaY;
-    //   },
-    //   { passive: false }
-    // );
+
 
     if (iframe && overlay) {
       overlay.addEventListener('click', () => {

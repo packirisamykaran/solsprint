@@ -113,6 +113,7 @@
      3. GSAP horizontal scroll (desktop)
   ================================================ */
   gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollToPlugin);
   function initHorizontalScroll() {
     try {
       const container = document.querySelector('#main');
@@ -292,14 +293,19 @@
     const iframe = $('#unity-frame');
     const overlay = $('#overlay');
 
-    const maxLeft = () => container.scrollWidth - container.clientWidth;
-
     const scrollTo = id => {
       const sec = $(`#${id}`);
       if (!sec) return;
-      container.scrollTo({
-        left: Math.min(sec.offsetLeft, maxLeft()),
-        behavior: 'smooth'
+
+      // Calculate the ScrollTrigger scroll position based on section index
+      const sections = $$('.section');
+      const index = [...sections].indexOf(sec);
+      const y = index * window.innerWidth * 3;
+
+      gsap.to(window, {
+        scrollTo: y,
+        duration: 0.3,
+        ease: 'power2.inOut',
       });
     };
 
@@ -312,22 +318,18 @@
 
     caBtn?.addEventListener('click', () => scrollTo('section-5'));
 
-
-
     if (iframe && overlay) {
       overlay.addEventListener('click', () => {
         iframe.classList.add('active');
         overlay.style.display = 'none';
 
         const bg = $('#bgMusic');
-
         const musicIcon = $('#music-btn');
 
         if (!bg.paused) {
           bg.pause();
           musicIcon.src = 'assets/img/music off.png';
         }
-
       });
     }
   }

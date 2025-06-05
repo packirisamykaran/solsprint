@@ -15,12 +15,13 @@
   document.addEventListener('DOMContentLoaded', () => {
     initAudioOnFirstClick();
     initAudioOnFirstClickMobile();
-    initPopup();
+    // initPopup();
     initHorizontalScroll();
     initWalletConnect();
     initCopyCA();
     initNavigation();
     initCopyCAMob();
+    initWalletHoverNotification();
   });
 
   /* =================================================
@@ -111,37 +112,36 @@
   /* ================================================
      3. GSAP horizontal scroll (desktop)
   ================================================ */
-  // gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger);
   function initHorizontalScroll() {
     try {
       const container = document.querySelector('#main');
       const sections = gsap.utils.toArray('.section');
-      const scrollSpeedFactor = 150;
+      const scrollSpeedFactor = 30;
 
+      if (!container || !sections.length) return;
 
+      // Enable vertical scrolling to trigger horizontal scroll
+      // container.addEventListener(
+      //   'wheel',
+      //   e => {
+      //     e.preventDefault();
+      //     container.scrollLeft += e.deltaY * 0.5; // adjust sensitivity
+      //   },
+      //   { passive: false }
+      // );
 
-      container.addEventListener(
-        'wheel',
-        e => {
-          e.preventDefault();
-          container.scrollLeft += e.deltaY * 0.35;
-        },
-        { passive: false }
-      );
-
-      // if (container && sections.length) {
-      //   gsap.to(sections, {
-      //     xPercent: -100 * (sections.length - 1),
-      //     ease: 'none',
-      //     scrollTrigger: {
-      //       trigger: container,
-      //       pin: true,
-      //       scrub: 0.8,
-      //       invalidateOnRefresh: true,
-      //       end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
-      //     }
-      //   });
-      // }
+      gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: container,
+          pin: true,
+          scrub: 0.8,
+          invalidateOnRefresh: true,
+          end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
+        }
+      });
     } catch (err) {
       console.error("Error in horizontal scroll setup:", err);
     }
@@ -347,18 +347,22 @@
       });
     }
   }
+
+  /* ================================================
+     7. Wallet hover notification
+  ================================================ */
+  function initWalletHoverNotification() {
+    const connectWallet = $('#connect-wallet');
+    const walletNotification = $('#wallet-notification');
+
+    if (!connectWallet || !walletNotification) return;
+
+    connectWallet.addEventListener('mouseenter', () => {
+      walletNotification.style.display = 'block';
+    });
+
+    connectWallet.addEventListener('mouseleave', () => {
+      walletNotification.style.display = 'none';
+    });
+  }
 })();
-
-
-
-
-const connectWallet = document.getElementById('connect-wallet');
-const walletNotification = document.getElementById('wallet-notification');
-
-connectWallet.addEventListener('mouseenter', () => {
-  walletNotification.style.display = 'block';
-});
-
-connectWallet.addEventListener('mouseleave', () => {
-  walletNotification.style.display = 'none';
-});

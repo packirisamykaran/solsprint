@@ -97,13 +97,14 @@
 
       setTimeout(() => {
         popup.classList.add('show');
-        tone?.play().catch(err => console.warn('popupSound error:', err));
+
         window.ScrollTrigger?.getAll().forEach(t => t.disable());
       }, 500);
 
       close.addEventListener('click', () => {
         popup.classList.remove('show');
         document.documentElement.style.overflow = '';
+        tone?.play().catch(err => console.warn('popupSound error:', err));
         window.ScrollTrigger?.getAll().forEach(t => t.enable());
       });
     });
@@ -129,7 +130,7 @@
         scrollTrigger: {
           trigger: container,
           pin: true,
-          scrub: 1,
+          scrub: 0.7,
           invalidateOnRefresh: true,
           end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
         }

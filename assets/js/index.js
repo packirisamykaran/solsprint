@@ -119,7 +119,7 @@
     try {
       const container = document.querySelector('#main');
       const sections = gsap.utils.toArray('.section');
-      const scrollSpeedFactor = 30;
+      const scrollSpeedFactor = 40;
 
       if (!container || !sections.length) return;
 
@@ -130,7 +130,7 @@
         scrollTrigger: {
           trigger: container,
           pin: true,
-          scrub: 0.7,
+          scrub: 0.8,
           invalidateOnRefresh: true,
           end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
         }

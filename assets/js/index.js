@@ -301,7 +301,7 @@
       // Calculate the ScrollTrigger scroll position based on section index
       const sections = $$('.section');
       const index = [...sections].indexOf(sec);
-      const y = index * window.innerWidth * 3;
+      const y = index * window.innerWidth * 4;
 
       gsap.to(window, {
         scrollTo: y,

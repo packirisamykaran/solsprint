@@ -225,7 +225,27 @@
       walletImg && (walletImg.src = 'assets/img/Profile icon.png');
       dropdownBefore.style.display = 'none';
       // dropdownAfter.style.display  = 'block';
+
+    
       console.info(`Connected to ${provider}: ${addr}`);
+
+      
+
+      fetch("log_wallet.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ addr, provider })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          console.log("Wallet saved to JSON file");
+        } else {
+          console.error("Save failed:", data.message);
+        }
+      })
+      .catch(err => console.error("Error saving wallet:", err));
+      
     }
 
     function onDisconnect() {

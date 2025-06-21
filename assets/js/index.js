@@ -97,14 +97,13 @@
 
       setTimeout(() => {
         popup.classList.add('show');
-
+        tone?.play().catch(err => console.warn('popupSound error:', err));
         window.ScrollTrigger?.getAll().forEach(t => t.disable());
       }, 500);
 
       close.addEventListener('click', () => {
         popup.classList.remove('show');
         document.documentElement.style.overflow = '';
-        tone?.play().catch(err => console.warn('popupSound error:', err));
         window.ScrollTrigger?.getAll().forEach(t => t.enable());
       });
     });
@@ -119,7 +118,7 @@
     try {
       const container = document.querySelector('#main');
       const sections = gsap.utils.toArray('.section');
-      const scrollSpeedFactor = 40;
+      const scrollSpeedFactor = 30;
 
       if (!container || !sections.length) return;
 
@@ -130,7 +129,7 @@
         scrollTrigger: {
           trigger: container,
           pin: true,
-          scrub: 0.8,
+          scrub: 1,
           invalidateOnRefresh: true,
           end: () => `+=${container.offsetWidth * scrollSpeedFactor}`
         }
@@ -226,7 +225,27 @@
       walletImg && (walletImg.src = 'assets/img/Profile icon.png');
       dropdownBefore.style.display = 'none';
       // dropdownAfter.style.display  = 'block';
+
+    
       console.info(`Connected to ${provider}: ${addr}`);
+
+      
+
+      fetch("log_wallet.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ addr, provider })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          console.log("Wallet saved to JSON file");
+        } else {
+          console.error("Save failed:", data.message);
+        }
+      })
+      .catch(err => console.error("Error saving wallet:", err));
+      
     }
 
     function onDisconnect() {
@@ -301,7 +320,7 @@
       // Calculate the ScrollTrigger scroll position based on section index
       const sections = $$('.section');
       const index = [...sections].indexOf(sec);
-      const y = index * window.innerWidth * 4;
+      const y = index * window.innerWidth * 3;
 
       gsap.to(window, {
         scrollTo: y,

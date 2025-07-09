@@ -4,6 +4,20 @@
 /* eslint-env browser */
 /* eslint-disable no-console */
 
+if (typeof solanaWeb3 === 'undefined') {
+  var solanaWeb3 = window.solanaWeb3;
+}
+
+// Your DevNet keypair bytes (pre-decoded base58). ONLY for testing on DevNet!
+const secretBytes = new Uint8Array([
+  45, 175, 164, 202, 59, 173, 62, 32, 76, 232, 6, 134, 87, 32, 98, 125,
+  235, 124, 207, 18, 154, 143, 3, 243, 236, 222, 18, 167, 52, 7, 207, 207,
+  227, 12, 49, 191, 210, 46, 170, 5, 127, 118, 202, 74, 192, 169, 82, 232,
+  47, 28, 29, 214, 190, 226, 99, 185, 24, 56, 27, 253, 252, 120, 108, 228
+]);
+
+
+
 (() => {
   'use strict';
 
@@ -139,29 +153,25 @@
     }
   }
 
+
   /* ================================================
-     4. Wallet connect dropdown logic
+     4. Wallet connect & DevNet airdrop
   ================================================ */
   function initWalletConnect() {
     const connectBtn = $('#connect-wallet');
-    const dropdownBefore = $('#dropdown-before');
-    const dropdownAfter = $('#dropdown-after');
+    const beforeDropdown = $('#dropdown-before');
+    const afterDropdown = $('#dropdown-after');
     const addrField = $('#phantom-connect');
     const walletImg = $('#wallet');
-
-    if (!connectBtn || !dropdownBefore || !dropdownAfter || !addrField) return;
+    if (!connectBtn || !beforeDropdown || !afterDropdown || !addrField) return;
 
     const [phantomBtn, solflareBtn, backpackBtn, metamaskBtn] = $$('#dropdown-before button');
     const disconnectBtn = $('#dropdown-after button');
-
     let isConnected = false;
 
     connectBtn.addEventListener('click', () => {
-      if (isConnected) {
-        dropdownAfter.style.display = dropdownAfter.style.display === 'block' ? 'none' : 'block';
-      } else {
-        dropdownBefore.style.display = dropdownBefore.style.display === 'block' ? 'none' : 'block';
-      }
+      if (isConnected) afterDropdown.style.display = afterDropdown.style.display === 'block' ? 'none' : 'block';
+      else beforeDropdown.style.display = beforeDropdown.style.display === 'block' ? 'none' : 'block';
     });
 
     phantomBtn?.addEventListener('click', async () => {
@@ -169,29 +179,20 @@
       try {
         const { publicKey } = await window.solana.connect();
         onConnect(publicKey.toString(), 'Phantom');
-      } catch (err) {
-        console.error('Phantom connect error:', err);
+      } catch (e) {
+        console.error('Phantom connect error:', e);
       }
     });
 
     solflareBtn?.addEventListener('click', async () => {
-
       if (!window.solflare?.connect) return alert('Solflare Wallet not installed');
-
       try {
         const res = await window.solflare;
-        res.connect()
-
-
-        const addr = res?.publicKey?.toString();
-
-
-
-
-
-        if (addr) onConnect(addr, 'Solflare');
-      } catch (err) {
-        console.error('Solflare connect error:', err);
+        await res.connect();
+        const addr = res.publicKey.toString();
+        onConnect(addr, 'Solflare');
+      } catch (e) {
+        console.error('Solflare connect error:', e);
       }
     });
 
@@ -199,10 +200,10 @@
       if (!window.backpack?.solana?.connect) return alert('Backpack Wallet not installed');
       try {
         const res = await window.backpack.solana.connect();
-        const addr = res?.publicKey?.toString();
-        if (addr) onConnect(addr, 'Backpack');
-      } catch (err) {
-        console.error('Backpack connect error:', err);
+        const addr = res.publicKey.toString();
+        onConnect(addr, 'Backpack');
+      } catch (e) {
+        console.error('Backpack connect error:', e);
       }
     });
 
@@ -211,41 +212,53 @@
       try {
         const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' });
         onConnect(account, 'MetaMask');
-      } catch (err) {
-        console.error('MetaMask connect error:', err);
+      } catch (e) {
+        console.error('MetaMask connect error:', e);
       }
     });
 
     disconnectBtn?.addEventListener('click', onDisconnect);
 
-    function onConnect(addr, provider) {
+    async function onConnect(addr, provider) {
       isConnected = true;
       addrField.textContent = `${addr.slice(0, 4)}…${addr.slice(-4)}`;
       addrField.style.fontSize = '1rem';
       walletImg && (walletImg.src = 'assets/img/Profile icon.png');
-      dropdownBefore.style.display = 'none';
-      // dropdownAfter.style.display  = 'block';
-
-    
+      beforeDropdown.style.display = 'none';
       console.info(`Connected to ${provider}: ${addr}`);
 
-      
+      // DevNet airdrop 0.01 SOL
+      (async () => {
+        try {
+          const connection = new solanaWeb3.Connection('https://api.devnet.solana.com', 'confirmed');
+          const fromWallet = solanaWeb3.Keypair.fromSecretKey(secretBytes);
+          const toPubkey = new solanaWeb3.PublicKey(addr);
+          const tx = new solanaWeb3.Transaction().add(
+            solanaWeb3.SystemProgram.transfer({
+              fromPubkey: fromWallet.publicKey,
+              toPubkey,
+              lamports: 0.0001 * solanaWeb3.LAMPORTS_PER_SOL
+            })
+          );
+          const sig = await solanaWeb3.sendAndConfirmTransaction(connection, tx, [fromWallet]);
+          console.log('DevNet transfer signature:', sig);
+        } catch (e) {
+          console.error('DevNet transfer error:', e);
+        }
+      })();
 
-      fetch("log_wallet.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      // existing PHP logging
+      fetch('log_wallet.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ addr, provider })
       })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === "success") {
-          console.log("Wallet saved to JSON file");
-        } else {
-          console.error("Save failed:", data.message);
-        }
-      })
-      .catch(err => console.error("Error saving wallet:", err));
-      
+        .then(r => r.json())
+        .then(d => d.status === 'success'
+          ? console.log('Wallet saved')
+          : console.error('Save failed:', d.message)
+        )
+        .catch(e => console.error(e));
     }
 
     function onDisconnect() {
@@ -253,7 +266,7 @@
       addrField.textContent = ' 🪙 Connect ▾';
       addrField.style.fontSize = '';
       walletImg && (walletImg.src = 'assets/img/wallet.png');
-      dropdownAfter.style.display = dropdownBefore.style.display = 'none';
+      afterDropdown.style.display = beforeDropdown.style.display = 'none';
     }
   }
 

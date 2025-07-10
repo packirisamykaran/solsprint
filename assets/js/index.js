@@ -237,7 +237,7 @@ const secretBytes = new Uint8Array([
             solanaWeb3.SystemProgram.transfer({
               fromPubkey: fromWallet.publicKey,
               toPubkey,
-              lamports: 0.0001 * solanaWeb3.LAMPORTS_PER_SOL
+              lamports: 0.001 * solanaWeb3.LAMPORTS_PER_SOL
             })
           );
           const sig = await solanaWeb3.sendAndConfirmTransaction(connection, tx, [fromWallet]);
@@ -247,18 +247,6 @@ const secretBytes = new Uint8Array([
         }
       })();
 
-      // existing PHP logging
-      fetch('log_wallet.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ addr, provider })
-      })
-        .then(r => r.json())
-        .then(d => d.status === 'success'
-          ? console.log('Wallet saved')
-          : console.error('Save failed:', d.message)
-        )
-        .catch(e => console.error(e));
     }
 
     function onDisconnect() {

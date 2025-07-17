@@ -269,7 +269,7 @@ const secretBytes = new Uint8Array([
 
     copyBox.addEventListener('click', () => {
       navigator.clipboard
-        .writeText(caText.textContent.trim())
+        .writeText("CSreUUnoPos4UEMvRymdMCH44EjY7cYVA7rNrXBzbonk")
         .then(() => {
           pop.style.opacity = '1';
           setTimeout(() => (pop.style.opacity = '0'), 1500);
@@ -290,7 +290,7 @@ const secretBytes = new Uint8Array([
 
     copyBox.addEventListener('click', () => {
       navigator.clipboard
-        .writeText("test")
+        .writeText("CSreUUnoPos4UEMvRymdMCH44EjY7cYVA7rNrXBzbonk")
         .then(() => {
           pop.style.opacity = '1';
           setTimeout(() => (pop.style.opacity = '0'), 1500);
